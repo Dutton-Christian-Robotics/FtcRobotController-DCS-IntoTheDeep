@@ -7,11 +7,13 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 
 @TeleOp(name = "Arm Test", group = "Testing")
 public class ArmTestOpMode extends LinearOpMode {
     DcMotorSimple leftMotor, rightMotor;
+    TouchSensor touchSensor;
 
     public void extend(double p) {
         leftMotor.setPower(p);
@@ -35,6 +37,8 @@ public class ArmTestOpMode extends LinearOpMode {
         rightMotor = hardwareMap.dcMotor.get("arm_right_motor");
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        touchSensor = hardwareMap.touchSensor.get("arm_retracted_sensor");
+
         waitForStart();
 
         while (opModeIsActive()) {
@@ -45,6 +49,8 @@ public class ArmTestOpMode extends LinearOpMode {
             } else {
                 stopArm();
             }
+            telemetry.addData("Sensor", touchSensor.isPressed());
+            telemetry.update();
         }
 
 

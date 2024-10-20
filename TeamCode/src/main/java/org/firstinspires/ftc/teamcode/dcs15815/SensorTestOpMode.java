@@ -6,25 +6,27 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@TeleOp(name = "Motor Test", group = "Testing")
-public class MotorTestOpMode extends LinearOpMode {
-   DcMotorSimple motor;
+@TeleOp(name = "Sensor Test", group = "Testing")
+public class SensorTestOpMode extends LinearOpMode {
+    DigitalChannel limitSwitch;
 
     @Override
     public void runOpMode() {
 
-        motor = hardwareMap.dcMotor.get("back_right_motor");
+        limitSwitch = hardwareMap.digitalChannel.get("shoulder_down_sensor");
+        limitSwitch.setMode(DigitalChannel.Mode.INPUT);
+
 
         waitForStart();
 
-//        while (!isStopRequested()) {
-            motor.setPower(.3);
-            sleep(1250);
-            motor.setPower(0);
-//        }
+        while (!isStopRequested()) {
+            telemetry.addData("Sensor", limitSwitch.getState());
+            telemetry.update();
+        }
 
     }
 

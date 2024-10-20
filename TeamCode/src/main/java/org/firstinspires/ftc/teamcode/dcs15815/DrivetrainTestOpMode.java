@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-@Disabled
 @TeleOp(name = "Drivetrain Test", group = "Testing")
 public class DrivetrainTestOpMode extends LinearOpMode {
     private DcMotor backLeftMotor, frontLeftMotor, frontRightMotor, backRightMotor;
@@ -29,10 +28,27 @@ public class DrivetrainTestOpMode extends LinearOpMode {
 
         while (!isStopRequested()) {
 
-            backLeftMotor.setPower(1);
-            frontLeftMotor.setPower(1);
-            frontRightMotor.setPower(1);
-            backRightMotor.setPower(1);
+            backLeftMotor.setPower(.2);
+            frontLeftMotor.setPower(.2);
+            frontRightMotor.setPower(.2);
+            backRightMotor.setPower(.2);
+            sleep(2000);
+            backLeftMotor.setPower(0);
+            frontLeftMotor.setPower(0);
+            frontRightMotor.setPower(0);
+            backRightMotor.setPower(0);
+            sleep(1000);
+            backLeftMotor.setPower(-.2);
+            frontLeftMotor.setPower(-.2);
+            frontRightMotor.setPower(-.2);
+            backRightMotor.setPower(-.2);
+            sleep(2000);
+            backLeftMotor.setPower(0);
+            frontLeftMotor.setPower(0);
+            frontRightMotor.setPower(0);
+            backRightMotor.setPower(0);
+            sleep(1000);
+
         }
 
     }
