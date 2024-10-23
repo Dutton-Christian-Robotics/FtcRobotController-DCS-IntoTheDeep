@@ -1,18 +1,16 @@
-package org.firstinspires.ftc.teamcode.dcs15815;
+package org.firstinspires.ftc.teamcode.dcs15815.opmodes_testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.Servo;
 
-
+@Disabled
 @TeleOp(name = "Shoulder Test", group = "Testing")
 public class ShoulderTestOpMode extends LinearOpMode {
-    DcMotorSimple leftMotor, rightMotor;
+    DcMotor leftMotor, rightMotor;
     DigitalChannel shoulderUpSensor, shoulderDownSensor;
 
 
@@ -43,8 +41,15 @@ public class ShoulderTestOpMode extends LinearOpMode {
 
         leftMotor = hardwareMap.dcMotor.get("shoulder_left_motor");
         rightMotor = hardwareMap.dcMotor.get("shoulder_right_motor");
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
+
+        leftMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        leftMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         waitForStart();
 
         while (!isStopRequested()) {
@@ -57,6 +62,8 @@ public class ShoulderTestOpMode extends LinearOpMode {
             }
             telemetry.addData("Down", !shoulderDownSensor.getState());
             telemetry.addData("Up", !shoulderUpSensor.getState());
+            telemetry.addData("left", leftMotor.getCurrentPosition());
+            telemetry.addData("right", rightMotor.getCurrentPosition());
             telemetry.update();
 
 

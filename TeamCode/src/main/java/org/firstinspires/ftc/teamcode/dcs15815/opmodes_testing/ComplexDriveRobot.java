@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode.dcs15815;
+package org.firstinspires.ftc.teamcode.dcs15815.opmodes_testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+@Disabled
 public class ComplexDriveRobot {
     HardwareMap hwMap;
     public DcMotor backLeft, frontLeft, frontRight, backRight;
