@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+@Disabled
 @TeleOp(name = "Arm Test", group = "Testing")
 public class ArmTestOpMode extends LinearOpMode {
     DcMotor leftMotor, rightMotor;

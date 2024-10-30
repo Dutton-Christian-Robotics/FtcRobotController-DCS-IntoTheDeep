@@ -4,8 +4,6 @@ package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderPresets;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderDelayedSequence;
 
 public class NautilusBot extends DefenderBot {
 
@@ -98,5 +96,33 @@ public class NautilusBot extends DefenderBot {
 //    public void gotoStartArmPosition() {
 //        gotoArmPosition(SBBConfiguration.START_POSITION);
 //    }
+
+    public void gotoAscendPrepPosition() {
+        shoulder.setPosition(NautilusConfiguration.SHOULDER_ASCEND_PREP_MAX);
+        arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
+    }
+
+    public void gotoAscendedPosition() {
+        arm.setPosition(NautilusConfiguration.ARM_POSITION_ASCENDED);
+        sleep(3000);
+        shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_ASCENDED);
+    }
+
+    public void lockManipulatorPositions() {
+        int shoulderPosition = shoulder.getPosition();
+        int armPosition = arm.getPosition();
+
+        shoulder.setPosition(shoulderPosition);
+        arm.setPosition(armPosition);
+
+    }
+
+    public void shoulderOverdrive() {
+        int shoulderPosition = shoulder.getPosition() + 800;
+        shoulder.setPosition(shoulderPosition);
+
+    }
+
+
 
 }

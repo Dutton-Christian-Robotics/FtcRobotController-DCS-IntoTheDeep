@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtiliti
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
-@TeleOp(name = "Manipulators ", group = "Testing")
+@TeleOp(name = "Manipulators", group = "Testing")
 public class ManipulatorsOpMode extends LinearOpMode
 {
     NautilusBot bot;

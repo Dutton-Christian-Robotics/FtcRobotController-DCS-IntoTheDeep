@@ -1,15 +1,17 @@
 package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotSystem;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderPIDController;
 
 public class NautilusShoulder extends DefenderBotSystem {
 
     public DcMotorEx leftMotor, rightMotor;
+    DigitalChannel upSensor, downSensor;
+
 
     public NautilusShoulder(HardwareMap hm, DefenderBot b) {
         super(hm, b);
@@ -27,14 +29,21 @@ public class NautilusShoulder extends DefenderBotSystem {
 
         leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+
+        downSensor = hardwareMap.digitalChannel.get(NautilusConfiguration.SHOULDER_DOWN_SENSOR);
+        downSensor.setMode(DigitalChannel.Mode.INPUT);
+
+        upSensor = hardwareMap.digitalChannel.get(NautilusConfiguration.SHOULDER_UP_SENSOR);
+        upSensor.setMode(DigitalChannel.Mode.INPUT);
+
     }
 
     public void setPosition(int p) {
-        if (p > NautilusConfiguration.SHOULDER_POSITION_MAX) {
-            p = NautilusConfiguration.SHOULDER_POSITION_MAX;
-        } else if (p < NautilusConfiguration.SHOULDER_POSITION_MIN) {
-            p = NautilusConfiguration.SHOULDER_POSITION_MIN;
-        }
+//        if (p > NautilusConfiguration.SHOULDER_POSITION_MAX) {
+//            p = NautilusConfiguration.SHOULDER_POSITION_MAX;
+//        } else if (p < NautilusConfiguration.SHOULDER_POSITION_MIN) {
+//            p = NautilusConfiguration.SHOULDER_POSITION_MIN;
+//        }
 
         leftMotor.setPower(0);
         rightMotor.setPower(0);
@@ -77,6 +86,14 @@ public class NautilusShoulder extends DefenderBotSystem {
 //	   r.run();
 //    }
 
+    public boolean isFullyUp() {
+        return !upSensor.getState();
+    }
+
+    public boolean isFullyDown() {
+        return !downSensor.getState();
+    }
+
     public void setPower(double p) {
         leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
@@ -90,13 +107,14 @@ public class NautilusShoulder extends DefenderBotSystem {
 
     public void tiltUp(double p) {
 //        if (leftMotor.getCurrentPosition() < NautilusConfiguration.SHOULDER_POSITION_MAX) {
+        if (!isFullyUp()) {
             if (p > NautilusConfiguration.SHOULDER_POWER_MAX) {
                 p = NautilusConfiguration.SHOULDER_POWER_MAX;
             }
             setPower(p);
-//        } else {
-//            setPower(0);
-//        }
+        } else {
+            setPower(0);
+        }
     }
 
     public void tiltDown() {
@@ -105,13 +123,14 @@ public class NautilusShoulder extends DefenderBotSystem {
 
     public void tiltDown(double p) {
 //        if (leftMotor.getCurrentPosition() > NautilusConfiguration.SHOULDER_POSITION_MIN) {
+        if (!isFullyDown()) {
             if (p > NautilusConfiguration.SHOULDER_POWER_MAX) {
                 p = NautilusConfiguration.SHOULDER_POWER_MAX;
             }
             setPower(-1 * p);
-//        } else {
-//            setPower(0);
-//        }
+        } else {
+            setPower(0);
+        }
     }
 
 

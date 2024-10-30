@@ -2,14 +2,16 @@ package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotSystem;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderPIDController;
 
 public class NautilusArm extends DefenderBotSystem {
 
     public DcMotorEx leftMotor, rightMotor;
+    TouchSensor retractedSensor;
+
 
     public NautilusArm(HardwareMap hm, DefenderBot b) {
         super(hm, b);
@@ -27,14 +29,17 @@ public class NautilusArm extends DefenderBotSystem {
 
         leftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+
+        retractedSensor = hardwareMap.touchSensor.get(NautilusConfiguration.ARM_RETRACTED_SENSOR);
+
     }
 
     public void setPosition(int p) {
-        if (p > NautilusConfiguration.ARM_POSITION_MAX) {
-            p = NautilusConfiguration.ARM_POSITION_MAX;
-        } else if (p < NautilusConfiguration.ARM_POSITION_MIN) {
-            p = NautilusConfiguration.ARM_POSITION_MIN;
-        }
+//        if (p > NautilusConfiguration.ARM_POSITION_MAX) {
+//            p = NautilusConfiguration.ARM_POSITION_MAX;
+//        } else if (p < NautilusConfiguration.ARM_POSITION_MIN) {
+//            p = NautilusConfiguration.ARM_POSITION_MIN;
+//        }
 
         leftMotor.setPower(0);
         rightMotor.setPower(0);
@@ -54,7 +59,9 @@ public class NautilusArm extends DefenderBotSystem {
         setPosition(getPosition() + p);
     }
 
-
+    public boolean isFullyRetracted() {
+        return retractedSensor.isPressed();
+    }
 
 //    public void gotoPosition(int p) {
 //	   int tolerance = 5;
@@ -106,13 +113,14 @@ public class NautilusArm extends DefenderBotSystem {
 
     public void retract(double p) {
 //        if (leftMotor.getCurrentPosition() > NautilusConfiguration.ARM_POSITION_MIN) {
+        if (!isFullyRetracted()) {
             if (p > NautilusConfiguration.ARM_POWER_MAX) {
                 p = NautilusConfiguration.ARM_POWER_MAX;
             }
             setPower(-1 * p);
-//        } else {
-//            setPower(0);
-//        }
+        } else {
+            setPower(0);
+        }
     }
 
     public void stop() {

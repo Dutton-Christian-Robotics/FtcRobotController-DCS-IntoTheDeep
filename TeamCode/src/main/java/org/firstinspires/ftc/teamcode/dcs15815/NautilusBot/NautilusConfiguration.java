@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotConfiguration;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderPresets;
+import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderPresets;
 
 public class NautilusConfiguration extends DefenderBotConfiguration {
 
@@ -30,10 +30,14 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static DcMotorSimple.Direction SHOULDER_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
     public static DcMotorSimple.Direction SHOULDER_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
     public static String SHOULDER_DOWN_SENSOR = "shoulder_down_sensor";
-    public static String SHOUDLER_UP_SENSOR = "shoulder_up_sensor";
+    public static String SHOULDER_UP_SENSOR = "shoulder_up_sensor";
     public static double SHOULDER_POWER_MAX = 1;
-    public static int SHOULDER_POSITION_MAX = 2800;
+    public static int SHOULDER_ASCEND_PREP_MAX = 3200;
+
+    public static int SHOULDER_POSITION_MAX = 3200;
     public static int SHOULDER_POSITION_MIN = 0;
+    public static int SHOULDER_POSITION_ASCENDED = -200;
+
     public static int SHOULDER_POSITION_DELTA = 250;
     // left straight out 1093
     // right straight out 1092
@@ -50,8 +54,10 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static DcMotorSimple.Direction ARM_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
     public static String ARM_RETRACTED_SENSOR = "arm_retracted_sensor";
     public static double ARM_POWER_MAX = 1;
+    public static int ARM_POSITION_ASCENDED = -400;
+
     public static int ARM_POSITION_MIN = 0;
-    public static int ARM_POSITION_MAX = 2900;
+    public static int ARM_POSITION_MAX = 3000;
     public static int ARM_POSITION_DELTA = 125;
 
     // all the way out 3000
@@ -63,6 +69,12 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double WRIST_SERVO_POSITION_MIDDLE = 0.6;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
     public static double WRIST_POSITION_DELTA = 0.1;
+
+    public static DefenderPresets<Double> WRIST_PRESETS = new DefenderPresets<>(
+            NautilusConfiguration.WRIST_SERVO_POSITION_TOP,
+            NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE,
+            NautilusConfiguration.WRIST_SERVO_POSITION_BOTTOM
+    );
 
     /* INTAKE -------------------------------------------------------- */
 
@@ -110,6 +122,14 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
 
     /* PRESETS -------------------------------------------------------- */
+
+    public static NautilusManipulatorPosition PREPARE_TO_ASCEND_POSITION = new NautilusManipulatorPosition(
+            NautilusConfiguration.SHOULDER_ASCEND_PREP_MAX, 2900, NautilusConfiguration.WRIST_SERVO_POSITION_TOP
+    );
+
+    public static NautilusManipulatorPosition ASCENDED_POSITION = new NautilusManipulatorPosition(
+            0, 0, NautilusConfiguration.WRIST_SERVO_POSITION_TOP
+    );
 
 //    public static SBBArmPosition START_POSITION = new SBBArmPosition(
 //            SBBConfiguration.LIFT_POSITION_GROUND,

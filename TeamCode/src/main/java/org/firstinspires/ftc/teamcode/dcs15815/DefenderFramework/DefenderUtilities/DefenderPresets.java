@@ -1,10 +1,4 @@
-package org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot;
-
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+package org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities;
 
 import java.util.*;
 
@@ -57,6 +51,14 @@ public class DefenderPresets<T> {
     public void selectPrevious() {
 	   select(currentPosition - 1);
     }
+
+	public void selectFirst() {
+		select(0);
+	}
+
+	public void selectLast() {
+		select(presets.size() - 1);
+	}
 
     public T selected() {
 	   return presets.get(currentPosition);
