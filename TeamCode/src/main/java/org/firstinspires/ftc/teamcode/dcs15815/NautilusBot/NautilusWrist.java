@@ -25,6 +25,11 @@ public class NautilusWrist extends DefenderBotSystem {
         servo.setPosition(wristPresets.selected());
     }
 
+    public void gotoMidPosition() {
+        servo.setPosition(NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE);
+    }
+
+
     public void gotoDownPosition() {
         wristPresets.selectLast();
         servo.setPosition(wristPresets.selected());

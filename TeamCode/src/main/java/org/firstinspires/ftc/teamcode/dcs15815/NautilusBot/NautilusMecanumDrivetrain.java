@@ -133,6 +133,87 @@ public class NautilusMecanumDrivetrain extends DefenderBotDrivetrain {
         backRight.setVelocity(backRightPower / largest * maxTicksSecond);
     }
 
+    public boolean frontLeftIsStalled() {
+        return false;
+//        return frontLeft.getVelocity() == 0;
+    }
 
+    public void driveForwardByFrontLeftEncoder(double p, double distance) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() < (start + distance)) && !frontLeftIsStalled()) {
+            drive(p, 0, 0);
+        }
+        stopDriving();
+    }
+
+    public void driveBackwardByFrontLeftEncoder(double p, double distance) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() > (start - distance)) && !frontLeftIsStalled()) {
+            drive(-1 * p, 0, 0);
+        }
+        stopDriving();
+    }
+
+    public void turnRightByFrontLeftEncoder(double p, double d) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() < (start + d)) && !frontLeftIsStalled()) {
+            drive(0, 0, p);
+        }
+        stopDriving();
+    }
+
+    public void turnLeftByFrontLeftEncoder(double p, double d) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() > (start - d)) && !frontLeftIsStalled()) {
+            drive(0, 0, -1 * p);
+        }
+        stopDriving();
+    }
+
+    public void turnRight90ByFrontLeftEncoder(double p) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() < (start + 650)) && !frontLeftIsStalled()) {
+            drive(0, 0, p);
+        }
+        stopDriving();
+    }
+
+    public void turnLeft90ByFrontLeftEncoder(double p) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() > (start - 650)) && !frontLeftIsStalled()) {
+            drive(0, 0, -1 * p);
+        }
+        stopDriving();
+    }
+
+    public void strafeLeftByFrontLeftEncoder(double p, double distance) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() > (start - distance)) && !frontLeftIsStalled()) {
+            drive(0, -1 * p, 0);
+        }
+        stopDriving();
+
+    }
+
+    public void strafeRightByFrontLeftEncoder(double p, double distance) {
+        double start = frontLeft.getCurrentPosition();
+        while ((frontLeft.getCurrentPosition() < (start + distance)) && !frontLeftIsStalled()) {
+            drive(0, 1 * p, 0);
+        }
+        stopDriving();
+
+    }
+
+/*
+    Forward:
+        1 tile = 500 ticks
+    Backward:
+        1 tile = 500+ ticks
+    Right:
+        90º = 650 ticks
+    Left:
+        90º - 650 ticks
+
+ */
 
 }

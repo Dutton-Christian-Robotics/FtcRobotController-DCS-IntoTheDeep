@@ -12,6 +12,7 @@ public class NautilusBot extends DefenderBot {
     public NautilusArm arm;
     public NautilusIntake intake;
     public NautilusWrist wrist;
+    public NautilusEffects effects;
 
     //    public DefenderPresets<SBBArmPosition> armPresets;
 //    public DefenderDelayedSequence grabPixelSequence;
@@ -24,6 +25,7 @@ public class NautilusBot extends DefenderBot {
         arm = addSystem(NautilusArm.class);
         intake = addSystem(NautilusIntake.class);
         wrist = addSystem(NautilusWrist.class);
+        effects = addSystem(NautilusEffects.class);
 
 //        leds = addSystem(SBBEffectsLeds.class);
 

@@ -85,8 +85,8 @@ public class NautilusArm extends DefenderBotSystem {
 //    }
 
     public void setPower(double p) {
-        leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        leftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         leftMotor.setPower(p);
         rightMotor.setPower(p);
     }

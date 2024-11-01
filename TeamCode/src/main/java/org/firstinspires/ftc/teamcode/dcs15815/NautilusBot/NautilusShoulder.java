@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -27,8 +28,8 @@ public class NautilusShoulder extends DefenderBotSystem {
         leftMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        leftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 
         downSensor = hardwareMap.digitalChannel.get(NautilusConfiguration.SHOULDER_DOWN_SENSOR);
         downSensor.setMode(DigitalChannel.Mode.INPUT);
@@ -39,6 +40,10 @@ public class NautilusShoulder extends DefenderBotSystem {
     }
 
     public void setPosition(int p) {
+        setPosition(p, NautilusConfiguration.SHOULDER_POWER_MAX);
+    }
+
+    public void setPosition(int p, double power) {
 //        if (p > NautilusConfiguration.SHOULDER_POSITION_MAX) {
 //            p = NautilusConfiguration.SHOULDER_POSITION_MAX;
 //        } else if (p < NautilusConfiguration.SHOULDER_POSITION_MIN) {
@@ -51,8 +56,8 @@ public class NautilusShoulder extends DefenderBotSystem {
         rightMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         leftMotor.setTargetPosition(p);
         rightMotor.setTargetPosition(p);
-        leftMotor.setPower(NautilusConfiguration.SHOULDER_POWER_MAX);
-        rightMotor.setPower(NautilusConfiguration.SHOULDER_POWER_MAX);
+        leftMotor.setPower(power);
+        rightMotor.setPower(power);
     }
 
     public int getPosition() {
@@ -95,8 +100,8 @@ public class NautilusShoulder extends DefenderBotSystem {
     }
 
     public void setPower(double p) {
-        leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        leftMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         leftMotor.setPower(p);
         rightMotor.setPower(p);
     }

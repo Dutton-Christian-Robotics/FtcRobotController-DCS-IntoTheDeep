@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 
-@Autonomous(name = "Autonomous Testing", group = "None")
+@Autonomous(name = "Autonomous Testing", group = "Testing")
 public class AutonomousTestingOpMode extends LinearOpMode {
     NautilusBot bot;
 

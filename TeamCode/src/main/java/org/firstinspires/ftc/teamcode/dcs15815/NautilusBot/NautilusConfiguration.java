@@ -11,10 +11,10 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* DRIVETRAIN -------------------------------------------------- */
 
-    public static String DRIVETRAIN_BACK_LEFT_MOTOR_NAME = "back_left_motor";
-    public static String DRIVETRAIN_FRONT_LEFT_MOTOR_NAME = "front_left_motor";
-    public static String DRIVETRAIN_FRONT_RIGHT_MOTOR_NAME = "front_right_motor";
-    public static String DRIVETRAIN_BACK_RIGHT_MOTOR_NAME = "back_right_motor";
+    public static String DRIVETRAIN_BACK_LEFT_MOTOR_NAME = "back_left_motor"; // Control Hub, Motor 0
+    public static String DRIVETRAIN_FRONT_LEFT_MOTOR_NAME = "front_left_motor"; // Control Hub, Motor 1
+    public static String DRIVETRAIN_FRONT_RIGHT_MOTOR_NAME = "front_right_motor"; // Control Hub, Motor 2
+    public static String DRIVETRAIN_BACK_RIGHT_MOTOR_NAME = "back_right_motor"; // Control Hub, Motor 3
     public static DcMotorSimple.Direction DRIVETRAIN_BACK_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
     public static DcMotorSimple.Direction DRIVETRAIN_FRONT_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
     public static DcMotorSimple.Direction DRIVETRAIN_FRONT_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
@@ -25,13 +25,14 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* SHOULDER -------------------------------------------------------- */
 
-    public static String SHOULDER_LEFT_MOTOR_NAME = "shoulder_left_motor";
-    public static String SHOULDER_RIGHT_MOTOR_NAME = "shoulder_right_motor";
-    public static DcMotorSimple.Direction SHOULDER_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
-    public static DcMotorSimple.Direction SHOULDER_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
-    public static String SHOULDER_DOWN_SENSOR = "shoulder_down_sensor";
-    public static String SHOULDER_UP_SENSOR = "shoulder_up_sensor";
+    public static String SHOULDER_LEFT_MOTOR_NAME = "shoulder_left_motor"; // Expansion Hub, Motor 0
+    public static String SHOULDER_RIGHT_MOTOR_NAME = "shoulder_right_motor"; // Expansion Hub, Motor 1
+    public static DcMotorSimple.Direction SHOULDER_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
+    public static DcMotorSimple.Direction SHOULDER_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
+    public static String SHOULDER_DOWN_SENSOR = "shoulder_down_sensor"; // Control Hub, Digital 0
+    public static String SHOULDER_UP_SENSOR = "shoulder_up_sensor"; // Control Hub, Digital 2
     public static double SHOULDER_POWER_MAX = 1;
+    public static double SHOULDER_POWER_NORMAL = 0.6;
     public static int SHOULDER_ASCEND_PREP_MAX = 3200;
 
     public static int SHOULDER_POSITION_MAX = 3200;
@@ -48,12 +49,13 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* ARM -------------------------------------------------------- */
 
-    public static String ARM_LEFT_MOTOR_NAME = "arm_left_motor";
-    public static String ARM_RIGHT_MOTOR_NAME = "arm_right_motor";
+    public static String ARM_LEFT_MOTOR_NAME = "arm_left_motor"; // Expansion Hub, Motor 2
+    public static String ARM_RIGHT_MOTOR_NAME = "arm_right_motor"; // Expansion Hub, Motor 3
     public static DcMotorSimple.Direction ARM_LEFT_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
     public static DcMotorSimple.Direction ARM_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
-    public static String ARM_RETRACTED_SENSOR = "arm_retracted_sensor";
+    public static String ARM_RETRACTED_SENSOR = "arm_retracted_sensor"; // Expansion Hub, Digital 0
     public static double ARM_POWER_MAX = 1;
+    public static double ARM_POWER_NORMAL = 0.6;
     public static int ARM_POSITION_ASCENDED = -400;
 
     public static int ARM_POSITION_MIN = 0;
@@ -64,9 +66,9 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* WRIST -------------------------------------------------------- */
 
-    public static String WRIST_SERVO_NAME = "wrist_servo";
+    public static String WRIST_SERVO_NAME = "wrist_servo"; // Expansion Hub, Servo 0
     public static double WRIST_SERVO_POSITION_TOP = 0.9;
-    public static double WRIST_SERVO_POSITION_MIDDLE = 0.6;
+    public static double WRIST_SERVO_POSITION_MIDDLE = 0.5;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
     public static double WRIST_POSITION_DELTA = 0.1;
 
@@ -78,12 +80,12 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* INTAKE -------------------------------------------------------- */
 
-    public static String INTAKE_LEFT_SERVO_NAME = "intake_left_servo";
-    public static String INTAKE_RIGHT_SERVO_NAME = "intake_right_servo";
-    public static double INTAKE_LEFT_IN_POWER = -1;
-    public static double INTAKE_RIGHT_IN_POWER = 1;
-    public static double INTAKE_LEFT_OUT_POWER = .5;
-    public static double INTAKE_RIGHT_OUT_POWER = -.5;
+    public static String INTAKE_LEFT_SERVO_NAME = "intake_left_servo"; // Expansion Hub, Servo 1
+    public static String INTAKE_RIGHT_SERVO_NAME = "intake_right_servo"; // Expansion Hub, Servo 2
+    public static double INTAKE_LEFT_IN_POWER = 1;
+    public static double INTAKE_RIGHT_IN_POWER = -1;
+    public static double INTAKE_LEFT_OUT_POWER = -.7;
+    public static double INTAKE_RIGHT_OUT_POWER = .7;
 
 
     /* GAMEPADS -------------------------------------------------------- */
@@ -223,7 +225,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     /* EFFECTS -------------------------------------------------------- */
 
-    public static String EFFECTS_LEDS_NAME = "effects_leds";
+    public static String EFFECTS_LEDS_NAME = "effects_leds"; // Control Hub, Servo 5
 
 
     /* METHODS -------------------------------------------------------- */
