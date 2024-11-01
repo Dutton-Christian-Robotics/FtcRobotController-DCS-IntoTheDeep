@@ -115,6 +115,26 @@ public class AutonomousBlueXOpMode  extends LinearOpMode {
         sleep(600);
         bot.intake.stop();
 
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 450);
+
+        bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX, NautilusConfiguration.SHOULDER_POWER_MAX * .7);
+        bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
+        bot.wrist.gotoUpPosition();
+
+        bot.drivetrain.turnRightByFrontLeftEncoder(.1, 220);
+
+
+//        sleep(2000);
+
+
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 280);
+        sleep(275);
+
+        bot.shoulderOverdrive();
+
+        bot.intake.expel();
+        sleep(1000);
+        bot.intake.stop();
 
 
 

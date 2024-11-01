@@ -68,7 +68,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     public static String WRIST_SERVO_NAME = "wrist_servo"; // Expansion Hub, Servo 0
     public static double WRIST_SERVO_POSITION_TOP = 0.9;
-    public static double WRIST_SERVO_POSITION_MIDDLE = 0.5;
+    public static double WRIST_SERVO_POSITION_MIDDLE = 0.3;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
     public static double WRIST_POSITION_DELTA = 0.1;
 

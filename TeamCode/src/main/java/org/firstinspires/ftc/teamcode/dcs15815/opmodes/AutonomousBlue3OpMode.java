@@ -46,17 +46,19 @@ public class AutonomousBlue3OpMode  extends LinearOpMode {
         sleep(2000);
 
         // Approach the submersible
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 500);
+        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 450, true);
 
         // Spin the intake to help with delivery tension
         bot.intake.intake();
 
         // Lower the shoulder to latch the speciment
-        bot.shoulder.setPosition(1600, .6);
+        bot.shoulder.setPosition(1600, 1);
         sleep(2500);
 
         // Reset from delivery, prepare for travel
         bot.intake.expel();
+        bot.shoulder.setPosition(1800, .6);
+
         bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 250);
         bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX);
         bot.arm.setPosition(0);

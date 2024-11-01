@@ -69,27 +69,32 @@ public class AutonomousBlue4OpMode  extends LinearOpMode {
         bot.intake.stop();
 
         // Get a safe distance from the baskets
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 265);
-
-        // Get manipulators ready
-        bot.shoulder.setPosition(550, .6);
-        bot.arm.setPosition(225);
-        sleep(1500);
+        bot.drivetrain.driveForwardByFrontLeftEncoder(.15, 290);
 
         // Turn to neutral samples
         bot.drivetrain.turnLeftByFrontLeftEncoder(.13, 320);
-        bot.wrist.gotoMidPosition();
+
+        // Get manipulators ready
+        bot.arm.setPosition(0); // was 225
+        sleep(1200);
+        bot.shoulder.setPosition(0, .8); // was 550
+        sleep(1750);
+//        bot.wrist.gotoMidPosition();
+
+
+
+
 
 //        bot.wrist.gotoDownPosition();
         // Grab neutral sample
         bot.intake.intake();
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 460);
+        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 480);
         sleep(600);
         bot.intake.stop();
 
 
         // Backup
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 450);
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 700);
 
         // Get into delivery position
         bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX, NautilusConfiguration.SHOULDER_POWER_MAX * .7);
@@ -113,8 +118,12 @@ public class AutonomousBlue4OpMode  extends LinearOpMode {
         // Get away from basket
         bot.drivetrain.driveForwardByFrontLeftEncoder(.15, 200);
 
-        // Drive towards level 1 ascent
+        bot.drivetrain.turnRightByFrontLeftEncoder(.15, 250);
+
         bot.shoulder.setPosition(2100, .5);
+        bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 1800);
+
+        // Drive towards level 1 ascent
 //        bot.drivetrain.turnLeftByFrontLeftEncoder(.1, 100);
 //        bot.drivetrain.strafeLeftByFrontLeftEncoder(.2, 200);
         bot.drivetrain.driveForwardByFrontLeftEncoder(.15, 1600);

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotDrivetrain;
@@ -134,71 +135,194 @@ public class NautilusMecanumDrivetrain extends DefenderBotDrivetrain {
     }
 
     public boolean frontLeftIsStalled() {
-        return false;
-//        return frontLeft.getVelocity() == 0;
+//        return false;
+        return frontLeft.getVelocity() == 0;
     }
 
     public void driveForwardByFrontLeftEncoder(double p, double distance) {
+        driveForwardByFrontLeftEncoder(p, distance, false);
+    }
+    public void driveForwardByFrontLeftEncoder(double p, double distance, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() < (start + distance)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() < (start + distance)) && !shouldExit) {
             drive(p, 0, 0);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
         }
         stopDriving();
     }
 
     public void driveBackwardByFrontLeftEncoder(double p, double distance) {
+        driveBackwardByFrontLeftEncoder(p, distance, false);
+    }
+    public void driveBackwardByFrontLeftEncoder(double p, double distance, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() > (start - distance)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() > (start - distance)) && !shouldExit) {
             drive(-1 * p, 0, 0);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
         }
         stopDriving();
     }
 
-    public void turnRightByFrontLeftEncoder(double p, double d) {
+    public void turnRightByFrontLeftEncoder(double p, double distance) {
+        turnRightByFrontLeftEncoder(p, distance, false);
+    }
+
+    public void turnRightByFrontLeftEncoder(double p, double d, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() < (start + d)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() < (start + d)) && !shouldExit) {
             drive(0, 0, p);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
     }
 
-    public void turnLeftByFrontLeftEncoder(double p, double d) {
+    public void turnLeftByFrontLeftEncoder(double p, double distance) {
+        turnLeftByFrontLeftEncoder(p, distance, false);
+    }
+
+    public void turnLeftByFrontLeftEncoder(double p, double d, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() > (start - d)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() > (start - d)) && !shouldExit) {
             drive(0, 0, -1 * p);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
     }
 
     public void turnRight90ByFrontLeftEncoder(double p) {
+        turnRight90ByFrontLeftEncoder(p, false);
+    }
+
+    public void turnRight90ByFrontLeftEncoder(double p, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() < (start + 650)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() < (start + 650)) && !shouldExit) {
             drive(0, 0, p);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
     }
 
     public void turnLeft90ByFrontLeftEncoder(double p) {
+        turnLeft90ByFrontLeftEncoder(p, false);
+    }
+
+    public void turnLeft90ByFrontLeftEncoder(double p, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() > (start - 650)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() > (start - 650)) && !shouldExit) {
             drive(0, 0, -1 * p);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
     }
 
     public void strafeLeftByFrontLeftEncoder(double p, double distance) {
+        strafeLeftByFrontLeftEncoder(p,distance, false);
+    }
+
+    public void strafeLeftByFrontLeftEncoder(double p, double distance, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() > (start - distance)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() > (start - distance)) && !shouldExit) {
             drive(0, -1 * p, 0);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
 
     }
 
     public void strafeRightByFrontLeftEncoder(double p, double distance) {
+        strafeRightByFrontLeftEncoder(p, distance, false);
+    }
+    public void strafeRightByFrontLeftEncoder(double p, double distance, boolean useFailSafe) {
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        boolean shouldExit = false;
+
         double start = frontLeft.getCurrentPosition();
-        while ((frontLeft.getCurrentPosition() < (start + distance)) && !frontLeftIsStalled()) {
+        while ((frontLeft.getCurrentPosition() < (start + distance)) && !shouldExit) {
             drive(0, 1 * p, 0);
+            if (useFailSafe) {
+                if (timer.milliseconds() > 1000) {
+                    shouldExit = shouldExit || frontLeftIsStalled();
+                }
+            } else {
+                shouldExit = false;
+            }
+
         }
         stopDriving();
 

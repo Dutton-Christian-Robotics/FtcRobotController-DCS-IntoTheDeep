@@ -121,7 +121,7 @@ public class NautilusBot extends DefenderBot {
 
     public void shoulderOverdrive() {
         int shoulderPosition = shoulder.getPosition() + 800;
-        shoulder.setPosition(shoulderPosition);
+        shoulder.setPosition(shoulderPosition, 0.7);
 
     }
 
