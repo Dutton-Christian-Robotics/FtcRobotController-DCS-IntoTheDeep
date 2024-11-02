@@ -25,7 +25,7 @@ Actions:
    10) Level 1 ascent (3pts)
  */
 
-@Autonomous(name = "Blue 4", group = "4")
+@Autonomous(name = "Blue 4", group = "4", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousBlue4OpMode  extends LinearOpMode {
     NautilusBot bot;
 
@@ -43,7 +43,7 @@ public class AutonomousBlue4OpMode  extends LinearOpMode {
         bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 250);
 
         // Backup to the net zone
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(0.15, 650);
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(0.15, 650, true);
 
         // Turn so we're perpendicular to the baskets
         bot.drivetrain.turnLeftByFrontLeftEncoder(.1, 425);
@@ -88,7 +88,7 @@ public class AutonomousBlue4OpMode  extends LinearOpMode {
 //        bot.wrist.gotoDownPosition();
         // Grab neutral sample
         bot.intake.intake();
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 480);
+        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 480, true);
         sleep(600);
         bot.intake.stop();
 
@@ -105,7 +105,7 @@ public class AutonomousBlue4OpMode  extends LinearOpMode {
         bot.drivetrain.turnRightByFrontLeftEncoder(.1, 220);
 
         // Snug-up
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 280);
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 280, true);
         sleep(275);
 
         bot.shoulderOverdrive();

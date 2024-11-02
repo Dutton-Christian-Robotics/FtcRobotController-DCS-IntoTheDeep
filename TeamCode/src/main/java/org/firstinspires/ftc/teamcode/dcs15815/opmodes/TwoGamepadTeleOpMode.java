@@ -107,14 +107,14 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
 //                bot.intake.stop();
             }
 
-            if (gamepad2.a) {
-                ascendPrepared = true;
-                bot.gotoAscendPrepPosition();
-            }
-            if (gamepad2.b && ascendPrepared) {
-                ascending = true;
-                bot.gotoAscendedPosition();
-            }
+//            if (gamepad2.a) {
+//                ascendPrepared = true;
+//                bot.gotoAscendPrepPosition();
+//            }
+//            if (gamepad2.b && ascendPrepared) {
+//                ascending = true;
+//                bot.gotoAscendedPosition();
+//            }
 
             if (manualManipulation) {
                 if (gamepad2.right_stick_y < 0) {

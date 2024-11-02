@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 /*
-Alliance Color: Blue or Red
+Alliance Color: Red
 Level: 0
 Preload: none
 Starting Position: touching wall, facing into Observation Zone,
@@ -17,22 +17,22 @@ Actions:
     2) park (3pts)
  */
 
-@Autonomous(name = "Blue 0", group = "0", preselectTeleOp="TwoGamepadTeleOpMode")
-public class AutonomousBlue0OpMode  extends LinearOpMode {
+@Autonomous(name = "Red 0", group = "0", preselectTeleOp="TwoGamepadTeleOpMode")
+public class AutonomousRed0OpMode  extends LinearOpMode {
     NautilusBot bot;
 
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
 
-        bot.effects.scanBlue();
+        bot.effects.scanRed();
 
         waitForStart();
 
-        bot.effects.heartbeatBlue();
+        bot.effects.heartbeatRed();
         bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 200);
         bot.drivetrain.driveForwardByFrontLeftEncoder(0.1, 900);
-        bot.effects.solidBlue();
+        bot.effects.solidRed();
 
 
     }
