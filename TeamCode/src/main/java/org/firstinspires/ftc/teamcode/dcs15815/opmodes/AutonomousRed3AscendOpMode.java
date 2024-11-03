@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 /*
-Alliance Color: Blue
+Alliance Color: Red
 Level: 3
 Preload: blue specimen
 Starting Position: touching wall submersible, clip on ,
@@ -19,19 +19,19 @@ Actions:
     4) level 1 (3pts)
  */
 
-@Autonomous(name = "Blue 3", group = "3", preselectTeleOp="TwoGamepadTeleOpMode")
-public class AutonomousBlue3OpMode  extends LinearOpMode {
+@Autonomous(name = "Red 3 Ascend", group = "3", preselectTeleOp="TwoGamepadTeleOpMode")
+public class AutonomousRed3AscendOpMode extends LinearOpMode {
     NautilusBot bot;
 
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
 
-        bot.effects.scanBlue();
+        bot.effects.scanRed();
 
         waitForStart();
 
-        bot.effects.heartbeatBlue();
+        bot.effects.heartbeatRed();
 
         // Raise the shoulder to prevent specimen grabbing the floor
         bot.shoulder.setPosition(300);
@@ -87,7 +87,7 @@ public class AutonomousBlue3OpMode  extends LinearOpMode {
         bot.drivetrain.driveBackwardByFrontLeftEncoder(.2, 700);
 
 
-        bot.effects.solidBlue();
+        bot.effects.solidRed();
 
 
     }

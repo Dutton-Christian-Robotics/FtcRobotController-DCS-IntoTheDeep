@@ -41,7 +41,7 @@ public class AutonomousBlue2OpMode  extends LinearOpMode {
         bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 275);
 
         // Backup to the net zone
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(0.1, 650);
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(0.1, 650, true);
 
         // Turn so we're perpendicular to the baskets
         bot.drivetrain.turnLeftByFrontLeftEncoder(.1, 400);

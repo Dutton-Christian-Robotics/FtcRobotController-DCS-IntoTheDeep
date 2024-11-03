@@ -118,9 +118,9 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
 
             if (manualManipulation) {
                 if (gamepad2.right_stick_y < 0) {
-                    bot.arm.extend();
+                    bot.arm.extend(Math.abs(gamepad2.right_stick_y));
                 } else if (gamepad2.right_stick_y > 0) {
-                    bot.arm.retract();
+                    bot.arm.retract(gamepad2.right_stick_y);
                 } else {
                     if (!ascending && !ascendPrepared) {
                         bot.arm.stop();
@@ -130,10 +130,10 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
                 if (!shoulderOverdrive) {
                     if (gamepad2.left_stick_y < 0) {
                         shoulderOverdrive = false;
-                        bot.shoulder.tiltUp();
+                        bot.shoulder.tiltUp(Math.abs(gamepad2.left_stick_y));
                     } else if (gamepad2.left_stick_y > 0) {
                         shoulderOverdrive = false;
-                        bot.shoulder.tiltDown();
+                        bot.shoulder.tiltDown(gamepad2.left_stick_y);
                     } else {
                         if (!ascending && !ascendPrepared) {
                             bot.shoulder.stop();

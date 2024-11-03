@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 /*
-Alliance Color: Red
+Alliance Color: Blue
 Level: 3
 Preload: blue specimen
 Starting Position: touching wall submersible, clip on ,
@@ -19,19 +19,19 @@ Actions:
     4) level 1 (3pts)
  */
 
-@Autonomous(name = "Red 3", group = "3", preselectTeleOp="TwoGamepadTeleOpMode")
-public class AutonomousRed3OpMode  extends LinearOpMode {
+@Autonomous(name = "Blue 3 Park", group = "3", preselectTeleOp="TwoGamepadTeleOpMode")
+public class AutonomousBlue3ParkOpMode extends LinearOpMode {
     NautilusBot bot;
 
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
 
-        bot.effects.scanRed();
+        bot.effects.scanBlue();
 
         waitForStart();
 
-        bot.effects.heartbeatRed();
+        bot.effects.heartbeatBlue();
 
         // Raise the shoulder to prevent specimen grabbing the floor
         bot.shoulder.setPosition(300);
@@ -59,35 +59,15 @@ public class AutonomousRed3OpMode  extends LinearOpMode {
         bot.intake.expel();
         bot.shoulder.setPosition(1800, .6);
 
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 250);
+        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 450);
         bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX);
         bot.arm.setPosition(0);
         bot.intake.stop();
 
-        // Back away from the submersible
-//        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 250);
-
-        // Drive around the submersible
-        bot.drivetrain.turnLeft90ByFrontLeftEncoder(.1);
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 1100);
-        bot.drivetrain.turnRight90ByFrontLeftEncoder(.1);
-        // Travel towards submersible
-        bot.drivetrain.driveForwardByFrontLeftEncoder(.1,1100);
-        bot.drivetrain.turnLeft90ByFrontLeftEncoder(.1);
-
-        // Extend the arm
-        bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
-        sleep(1000);
-
-        // Overdrive the shoulder back for contact
-        bot.shoulderOverdrive();
+        bot.drivetrain.strafeRightByFrontLeftEncoder(.4, 2200, true);
 
 
-        // Backup to the submersible
-        bot.drivetrain.driveBackwardByFrontLeftEncoder(.2, 700);
-
-
-        bot.effects.solidRed();
+        bot.effects.solidBlue();
 
 
     }
