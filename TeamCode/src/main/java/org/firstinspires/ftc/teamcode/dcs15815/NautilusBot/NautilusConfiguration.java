@@ -105,6 +105,8 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static String IMU_SENSOR_NAME = "imu";
     public static AxesOrder IMU_AXES_ORDER = AxesOrder.XYZ;
 
+    public static double NAVIGATION_TOLERANCE = 1.0;
+
     // These are constants for the homegrown navigation.
     // This is unused since implementing RoadRunner
     public static double NAVIGATION_POWER_DEFAULT = 0.65;
