@@ -89,21 +89,21 @@ public class NautilusMecanumDrivetrain extends DefenderBotDrivetrain {
     }
 
     public void drive(double forward, double strafe, double rotate) {
-//	   setMotorDirection(DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD,
-//			 DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE);
 
         double backLeftPower = forward - strafe + rotate;
         double frontLeftPower = forward + strafe + rotate;
         double frontRightPower = forward - strafe - rotate;
         double backRightPower = forward + strafe - rotate;
 
-//        System.out.println("DRIVE REPORT");
-//        System.out.println(backLeftPower);
-//        System.out.println(frontLeftPower);
-//        System.out.println(frontRightPower);
-//        System.out.println(backRightPower);
-
         setProportionalPower(backLeftPower, frontLeftPower, frontRightPower, backRightPower);
+    }
+
+    public void driveNoProportional(double forward, double strafe, double rotate) {
+        double backLeftPower = forward - strafe + rotate;
+        double frontLeftPower = forward + strafe + rotate;
+        double frontRightPower = forward - strafe - rotate;
+        double backRightPower = forward + strafe - rotate;
+        setPower(backLeftPower, frontLeftPower, frontRightPower, backRightPower);
     }
 
     public void driveByVelocity(double forward, double strafe, double rotate) {

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
@@ -20,6 +21,7 @@ Actions:
     5) Level 1 ascent (3pts)
  */
 
+@Disabled
 @Autonomous(name = "Red 1", group = "1", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousRed1OpMode  extends LinearOpMode {
     NautilusBot bot;

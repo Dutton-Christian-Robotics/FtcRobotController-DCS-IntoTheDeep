@@ -19,13 +19,25 @@ public class OdometryTestOpMode extends LinearOpMode {
 
         waitForStart();
 
-        while (opModeIsActive()) {
+//        while (opModeIsActive()) {
 //            telemetry.addData("Has Drivetrain", bot.drivetrain != null);
 //            telemetry.addData("Has Navigation", bot.navigation != null);
 //            telemetry.update();
-            bot.driveToPosition(48, 0, 0);
+        bot.driveToPosition(96, 0, 0);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(0, 0, -90);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(84, 0, 0);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(0, 0, -90);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(84, 0, 0);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(0, 0, -90);
+        bot.navigation.resetOtos();
+        bot.driveToPosition(84, 0, 0);
 
-        }
+//        }
 
 //        bot.drivetrain.drive(0.35, 0, 0);
 //        sleep(2000);

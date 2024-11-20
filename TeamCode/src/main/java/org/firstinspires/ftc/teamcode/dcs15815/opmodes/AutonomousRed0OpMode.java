@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
@@ -16,7 +17,7 @@ Actions:
     1) drive forward into Observation Zone
     2) park (3pts)
  */
-
+@Disabled
 @Autonomous(name = "Red 0", group = "0", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousRed0OpMode  extends LinearOpMode {
     NautilusBot bot;

@@ -20,7 +20,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static DcMotorSimple.Direction DRIVETRAIN_FRONT_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
     public static DcMotorSimple.Direction DRIVETRAIN_BACK_RIGHT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
 
-    public static double DRIVETRAIN_POWER_MAX = 0.35;
+    public static double DRIVETRAIN_POWER_MAX = 1;
     public static int DRIVETRAIN_MAX_TICKS_PER_SECOND = 2800;
 
     /* SHOULDER -------------------------------------------------------- */
@@ -115,26 +115,31 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double NAVIGATION_ANGULAR_SCALE = 0.997;
     public static double NAVIGATION_LINEAR_SCALE = 0.978;
 
-    // These are constants for the homegrown navigation.
-    // This is unused since implementing RoadRunner
-    public static double NAVIGATION_POWER_DEFAULT = 0.65;
-    public static long NAVIGATION_TIMEOUT_DEFAULT = 10000;
-    public static double NAVIGATION_TOLERANCE_ROTATION = 0.3;
+    public static double NAVIGATION_TOLERANCE_R = 1.0;
     public static double NAVIGATION_TOLERANCE_X = 1.0;
-    public static double NAVIGATION_TOLERANCE_Y = 1.0;
-    public static double NAVIGATION_GEAR_RATIO = 1;
-    public static long NAVIGATION_TICKS_PER_ROTATION = 292; // actually 292.04, geared at 3:1 (actually 2.89:1) and 4:1 (3.61)
-    //    public static long NAVIGATION_TICKS_PER_ROTATION = 280;
-    public static double NAVIGATION_WHEEL_RADIUS = 1.88976;
-    //    public static double NAVIGATION_WHEEL_RADIUS = 2;
-    public static double NAVIGATION_INCHES_PER_TICK = (2 * Math.PI * NAVIGATION_GEAR_RATIO * NAVIGATION_WHEEL_RADIUS) / NAVIGATION_TICKS_PER_ROTATION;
-    public static double NAVIGATION_ROTATION_KP = 0.05;
-    public static double NAVIGATION_ROTATION_KI = 0;
-    public static double NAVIGATION_ROTATION_KD = 0;
+    public static double NAVIGATION_TOLERANCE_Y = 7.0; // in degrees
 
-    public static double NAVIGATION_MAXSPEED_X = 0.1;
-    public static double NAVIGATION_MAXSPEED_Y = 0.2;
-    public static double NAVIGATION_MAXSPEED_R = 0.1;
+    public static double NAVIGATION_X_KP = 0.2;
+    public static double NAVIGATION_X_KI = 0.4;
+    public static double NAVIGATION_X_KD = 0.03;
+
+    public static double NAVIGATION_Y_KP = 0.5;
+    public static double NAVIGATION_Y_KI = 4.5;
+    public static double NAVIGATION_Y_KD = 0.12;
+
+    public static double NAVIGATION_R_KP = 0.2;
+    public static double NAVIGATION_R_KI = 1.0;
+    public static double NAVIGATION_R_KD = 0.003;
+
+    public static double NAVIGATION_X_MAXPOWER = 0.6;
+    public static double NAVIGATION_Y_MAXPOWER = 0.3;
+    public static double NAVIGATION_R_MAXPOWER = 0.3;
+
+    public static long NAVIGATION_SETTLING_TIME = 500;
+
+    /* EFFECTS -------------------------------------------------------- */
+
+    public static String EFFECTS_LEDS_NAME = "effects_leds"; // Control Hub, Servo 5
 
 
     /* PRESETS -------------------------------------------------------- */
@@ -147,99 +152,6 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
             0, 0, NautilusConfiguration.WRIST_SERVO_POSITION_TOP
     );
 
-//    public static SBBArmPosition START_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            SBBConfiguration.ARM_POSITION_GROUND,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_TRAVEL);
-//
-//    public static SBBArmPosition TRAVEL_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            SBBConfiguration.ARM_POSITION_TRAVEL,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_TRAVEL);
-//
-//
-////    public static SBBArmPosition GRAB_READY_POSITION = new SBBArmPosition(
-////            1350,
-////            SBBConfiguration.ARM_POSITION_MIN,
-////            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//    public static SBBArmPosition GRAB_CONTACT_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            SBBConfiguration.ARM_POSITION_MIN,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//    public static SBBArmPosition GRAB_READY_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            300,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//    public static SBBArmPosition AUTONOMOUS_DROP_POSITION = new SBBArmPosition(
-//            200,
-//            SBBConfiguration.ARM_POSITION_GROUND,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//    public static SBBArmPosition AFTER_GRAB_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            500,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//
-//    public static SBBArmPosition LEAVE_STACK_POSITION = new SBBArmPosition(
-//            SBBConfiguration.LIFT_POSITION_GROUND,
-//            780,
-//            SBBConfiguration.WRIST_RIGHT_SERVO_POSITION_BOTTOM);
-//
-//    public static SBBArmPosition LOW_FRONT_DELIVERY_POSITION = new SBBArmPosition(
-//            0,
-//            635,
-//            0.425);
-//
-//    public static SBBArmPosition AUTONOMOUS_FRONT_DELIVERY_POSITION = new SBBArmPosition(
-//            0,
-//            540,
-//            0.35);
-//
-//    public static SBBArmPosition AUTONOMOUS_FRONT_DELIVERY_RELEASE_POSITION = new SBBArmPosition(
-//            0,
-//            540, // 700?
-//            0.6);
-//
-//
-//    public static SBBArmPosition MID_FRONT_DELIVERY_POSITION = new SBBArmPosition(
-//            500,
-//            1000,
-//            0.425);
-//
-//    public static SBBArmPosition HIGH_FRONT_DELIVERY_POSITION = new SBBArmPosition(
-//            0,
-//            1300,
-//            0.425);
-//
-//    public static SBBArmPosition HIGH_BACK_DELIVERY_POSITION = new SBBArmPosition(
-//            0,
-//            2037,
-//            0.85);
-//    public static SBBArmPosition HANG_POSITION = new SBBArmPosition(
-//            2600,
-//            1523,
-//            .225);
-//    public static SBBArmPosition HANGING_POSITION = new SBBArmPosition(
-//            1998,
-//            31,
-//            .225);
-//
-//
-//    public static DefenderPresets<SBBArmPosition> ARM_PRESETS = new DefenderPresets<>(
-//            SBBConfiguration.START_POSITION,
-//            SBBConfiguration.TRAVEL_POSITION,
-//            SBBConfiguration.LOW_FRONT_DELIVERY_POSITION,
-//            SBBConfiguration.MID_FRONT_DELIVERY_POSITION,
-//            SBBConfiguration.HIGH_BACK_DELIVERY_POSITION
-//    );
-
-    /* EFFECTS -------------------------------------------------------- */
-
-    public static String EFFECTS_LEDS_NAME = "effects_leds"; // Control Hub, Servo 5
 
 
     /* METHODS -------------------------------------------------------- */

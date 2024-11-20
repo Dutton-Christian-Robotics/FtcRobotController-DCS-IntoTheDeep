@@ -49,6 +49,17 @@ public class NautilusNavigation extends DefenderBotSystem {
 
     }
 
+    public void resetOtos() {
+        otos.calibrateImu();
+        otos.resetTracking();
+    }
+
+    public void newOrigin() {
+        SparkFunOTOS.Pose2D currentPose = otos.getPosition();
+        otos.setPosition(new SparkFunOTOS.Pose2D(0, 0, currentPose.h));
+
+    }
+
     public static double calculateYawError(double currentYawInDegrees, double targetYawInDegrees) {
         // Normalize angles to the range of -180 to 180 degrees
         currentYawInDegrees = normalizeAngle(currentYawInDegrees);
@@ -75,6 +86,20 @@ public class NautilusNavigation extends DefenderBotSystem {
             angleInDegrees += 360;
         }
         return angleInDegrees;
+    }
+
+    public static double scalePower(double rawPower, double maxPower, double bounds) {
+        return scalePower(rawPower, maxPower, -bounds, bounds, 3);
+    }
+
+    public static double scalePower(double rawPower, double maxPower, double lowerBounds, double upperBounds, double precision) {
+        double precisionFactor = Math.pow(10, precision);
+        return Range.clip(
+                Math.floor((rawPower / maxPower) * precisionFactor) / precisionFactor,
+                lowerBounds,
+                upperBounds
+        );
+
     }
 
 

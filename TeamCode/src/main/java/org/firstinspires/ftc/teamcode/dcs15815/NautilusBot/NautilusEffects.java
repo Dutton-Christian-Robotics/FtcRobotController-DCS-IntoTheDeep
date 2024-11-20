@@ -49,9 +49,22 @@ public class NautilusEffects extends DefenderBotSystem {
         setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_GOLD);
     }
 
-    public void greenWaves() {
+    public void strobeWhite() {
+        setPattern(RevBlinkinLedDriver.BlinkinPattern.STROBE_WHITE);
+    }
+
+    public void beatsGreen() {
+        setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_FOREST_PALETTE);
+    }
+
+    public void wavesGreen() {
         setPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_FOREST_PALETTE);
     }
+
+    public void wavesParty() {
+        setPattern(RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_PARTY_PALETTE);
+    }
+
 
     public void rainbow() {
         setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_RAINBOW_PALETTE);
