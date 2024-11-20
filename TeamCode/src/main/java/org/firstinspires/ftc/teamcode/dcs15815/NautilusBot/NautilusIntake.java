@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotSystem;
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class NautilusIntake extends DefenderBotSystem {
 
     private CRServo leftServo, rightServo;
+    private TouchSensor loadedSensor;
 
     public NautilusIntake(HardwareMap hm, DefenderBot b) {
         super(hm, b);
@@ -22,6 +25,7 @@ public class NautilusIntake extends DefenderBotSystem {
         leftServo = hardwareMap.crservo.get(NautilusConfiguration.INTAKE_LEFT_SERVO_NAME);
         rightServo = hardwareMap.crservo.get(NautilusConfiguration.INTAKE_RIGHT_SERVO_NAME);
 
+        loadedSensor = hardwareMap.touchSensor.get(NautilusConfiguration.INTAKE_LOADED_SENSOR);
 
     }
 
@@ -39,6 +43,10 @@ public class NautilusIntake extends DefenderBotSystem {
     public void stop() {
         leftServo.setPower(0);
         rightServo.setPower(0);
+    }
+
+    public boolean isLoaded() {
+        return !loadedSensor.isPressed();
     }
 
 

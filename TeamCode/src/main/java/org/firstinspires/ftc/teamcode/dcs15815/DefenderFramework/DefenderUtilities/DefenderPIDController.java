@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilit
 
 // PID controller courtesy of Peter Tischler, with modifications.
 
+import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusNavigation;
+
 public class DefenderPIDController
 {
     private double m_P;                     // factor for "proportional" control
@@ -20,6 +22,7 @@ public class DefenderPIDController
     private double m_setpoint = 0.0;
     private double m_error = 0.0;
     private double m_result = 0.0;
+	private boolean useAngles = false;
 
     /**
 	* Allocate a PID object with the given constants for P, I, D
@@ -27,12 +30,19 @@ public class DefenderPIDController
 	* @param Ki the integral coefficient
 	* @param Kd the derivative coefficient
 	*/
-    public DefenderPIDController(double Kp, double Ki, double Kd)
+    public DefenderPIDController(double Kp, double Ki, double Kd, boolean b)
     {
 	   m_P = Kp;
 	   m_I = Ki;
 	   m_D = Kd;
+	   useAngles = b;
     }
+
+	public double calculate(double setPoint, double current) {
+		setSetpoint(setPoint);
+		setInput(current);
+		return performPID();
+	}
 
     /**
 	* Read the input, calculate the output accordingly, and write to the output.
@@ -47,7 +57,12 @@ public class DefenderPIDController
 	   if (m_enabled)
 	   {
 		  // Calculate the error signal
-		  m_error = m_setpoint - m_input;
+		   if (useAngles) {
+			   m_error = NautilusNavigation.calculateYawError(m_input, m_setpoint);
+		   } else {
+			   m_error = m_setpoint - m_input;
+		   }
+
 
 		  // If continuous is set to true allow wrap around
 		  if (m_continuous)

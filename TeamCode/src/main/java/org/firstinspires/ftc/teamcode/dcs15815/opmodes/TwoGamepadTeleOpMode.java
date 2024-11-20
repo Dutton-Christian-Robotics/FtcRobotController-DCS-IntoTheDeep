@@ -136,7 +136,8 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
                         bot.shoulder.tiltDown(gamepad2.left_stick_y);
                     } else {
                         if (!ascending && !ascendPrepared) {
-                            bot.shoulder.stop();
+//                            bot.shoulder.stop();
+                            bot.shoulder.holdCurrentPosition();
                         }
                     }
                 }
@@ -164,12 +165,20 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
                 telemetry.addData("Manipulators", "LOCKED");
             }
 
-            if (!ascendPrepared) {
-                telemetry.addData("Ascend", "not prepared");
-            } else if (!ascending) {
-                telemetry.addData("Ascend", "PREPARED");
-            } else if (ascending) {
-                telemetry.addData("Ascend", "ACTIVATED");
+//            if (!ascendPrepared) {
+//                telemetry.addData("Ascend", "not prepared");
+//            } else if (!ascending) {
+//                telemetry.addData("Ascend", "PREPARED");
+//            } else if (ascending) {
+//                telemetry.addData("Ascend", "ACTIVATED");
+//            }
+
+            if (bot.intake.isLoaded()) {
+                telemetry.addData("Intake", "empty");
+                bot.effects.rainbow();
+            } else {
+                telemetry.addData("Intake", "LOADED");
+                bot.effects.strobeGold();
             }
 //            telemetry.addData("Lift", bot.lift.getPosition());
 //            telemetry.addData("Tilt", bot.tilt.getPosition());

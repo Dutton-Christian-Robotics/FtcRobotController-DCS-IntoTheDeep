@@ -138,6 +138,13 @@ public class NautilusShoulder extends DefenderBotSystem {
         }
     }
 
+    public void holdCurrentPosition() {
+        int shoulderPosition = getPosition();
+
+        setPosition(shoulderPosition);
+
+    }
+
 
     public void stop() {
         setPower(0);

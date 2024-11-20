@@ -11,10 +11,14 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
+import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
+@Disabled
 @TeleOp(name = "OTOS Test", group = "Testing")
 public class OtosTestOpMode extends LinearOpMode {
     SparkFunOTOS myOtos;
+    NautilusBot bot;
 
     private void configureOtos() {
 
@@ -29,8 +33,8 @@ public class OtosTestOpMode extends LinearOpMode {
         SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0, 0, 0);
         myOtos.setOffset(offset);
 
-        myOtos.setLinearScalar(1.0);
-        myOtos.setAngularScalar(1.0);
+        myOtos.setLinearScalar(0.978);
+        myOtos.setAngularScalar(0.997);
 
         myOtos.calibrateImu();
         myOtos.resetTracking();
@@ -53,6 +57,8 @@ public class OtosTestOpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
+
         configureOtos();
 
         waitForStart();
@@ -70,6 +76,22 @@ public class OtosTestOpMode extends LinearOpMode {
             // Re-calibrate the IMU if the user requests it
             if (gamepad1.x) {
                 myOtos.calibrateImu();
+            }
+
+            if (gamepad1.right_stick_x < 0) {
+                bot.drivetrain.drive(0, 0, -0.5);
+            } else if (gamepad1.right_stick_x > 0) {
+                bot.drivetrain.drive(0, 0, 0.5);
+            } else {
+                bot.drivetrain.stopDriving();
+            }
+
+            if (gamepad1.left_stick_y < 0) {
+                bot.drivetrain.drive(gamepad1.left_stick_y * -1, 0, 0);
+            } else if (gamepad1.left_stick_y > 0) {
+                bot.drivetrain.drive(gamepad1.left_stick_y * -1, 0, 0);
+            } else {
+                bot.drivetrain.stopDriving();
             }
 
             // Inform user of available controls

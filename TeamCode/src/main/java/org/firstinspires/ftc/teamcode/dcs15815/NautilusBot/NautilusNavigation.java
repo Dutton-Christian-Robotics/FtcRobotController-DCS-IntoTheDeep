@@ -4,6 +4,7 @@ import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class NautilusNavigation extends DefenderBotSystem {
 
-    SparkFunOTOS otos;
+    public SparkFunOTOS otos;
 
 
     public NautilusNavigation(HardwareMap hm, DefenderBot b) {
@@ -31,8 +32,8 @@ public class NautilusNavigation extends DefenderBotSystem {
         SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0, 0, 0);
         otos.setOffset(offset);
 
-        otos.setLinearScalar(1.0);
-        otos.setAngularScalar(1.0);
+        otos.setLinearScalar(NautilusConfiguration.NAVIGATION_LINEAR_SCALE);
+        otos.setAngularScalar(NautilusConfiguration.NAVIGATION_ANGULAR_SCALE);
 
         otos.calibrateImu();
         otos.resetTracking();
@@ -41,9 +42,9 @@ public class NautilusNavigation extends DefenderBotSystem {
         otos.setPosition(currentPosition);
 
         // Get the hardware and firmware version
-        SparkFunOTOS.Version hwVersion = new SparkFunOTOS.Version();
-        SparkFunOTOS.Version fwVersion = new SparkFunOTOS.Version();
-        otos.getVersionInfo(hwVersion, fwVersion);
+//        SparkFunOTOS.Version hwVersion = new SparkFunOTOS.Version();
+//        SparkFunOTOS.Version fwVersion = new SparkFunOTOS.Version();
+//        otos.getVersionInfo(hwVersion, fwVersion);
 
 
     }
@@ -76,14 +77,7 @@ public class NautilusNavigation extends DefenderBotSystem {
         return angleInDegrees;
     }
 
-    public void driveToPosition(double x, double y, double h) {
-        double error = 0;
 
-        while (error > NautilusConfiguration.NAVIGATION_TOLERANCE) {
-
-        }
-
-    }
 
 
 }

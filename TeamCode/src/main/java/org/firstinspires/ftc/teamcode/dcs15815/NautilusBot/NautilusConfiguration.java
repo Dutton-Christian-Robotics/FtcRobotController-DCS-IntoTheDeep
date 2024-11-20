@@ -68,12 +68,15 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     public static String WRIST_SERVO_NAME = "wrist_servo"; // Expansion Hub, Servo 0
     public static double WRIST_SERVO_POSITION_TOP = 0.9;
+    public static double WRIST_SERVO_POSITION_TOPMIDDLE = 0.5;
+
     public static double WRIST_SERVO_POSITION_MIDDLE = 0.3;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
     public static double WRIST_POSITION_DELTA = 0.1;
 
     public static DefenderPresets<Double> WRIST_PRESETS = new DefenderPresets<>(
             NautilusConfiguration.WRIST_SERVO_POSITION_TOP,
+            NautilusConfiguration.WRIST_SERVO_POSITION_TOPMIDDLE,
             NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE,
             NautilusConfiguration.WRIST_SERVO_POSITION_BOTTOM
     );
@@ -82,6 +85,8 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     public static String INTAKE_LEFT_SERVO_NAME = "intake_left_servo"; // Expansion Hub, Servo 1
     public static String INTAKE_RIGHT_SERVO_NAME = "intake_right_servo"; // Expansion Hub, Servo 2
+    public static String INTAKE_LOADED_SENSOR = "intake_loaded_sensor"; // Expansion Hub, Digital 0
+
     public static double INTAKE_LEFT_IN_POWER = 1;
     public static double INTAKE_RIGHT_IN_POWER = -1;
     public static double INTAKE_LEFT_OUT_POWER = -.7;
@@ -100,12 +105,15 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double GAMEPAD1_RIGHT_STICK_X_MAX = 0.5;
 
 
-    /* NAVIGATON -------------------------------------------------------- */
+    /* NAVIGATION -------------------------------------------------------- */
 
     public static String IMU_SENSOR_NAME = "imu";
     public static AxesOrder IMU_AXES_ORDER = AxesOrder.XYZ;
 
     public static double NAVIGATION_TOLERANCE = 1.0;
+
+    public static double NAVIGATION_ANGULAR_SCALE = 0.997;
+    public static double NAVIGATION_LINEAR_SCALE = 0.978;
 
     // These are constants for the homegrown navigation.
     // This is unused since implementing RoadRunner
@@ -123,6 +131,10 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double NAVIGATION_ROTATION_KP = 0.05;
     public static double NAVIGATION_ROTATION_KI = 0;
     public static double NAVIGATION_ROTATION_KD = 0;
+
+    public static double NAVIGATION_MAXSPEED_X = 0.1;
+    public static double NAVIGATION_MAXSPEED_Y = 0.2;
+    public static double NAVIGATION_MAXSPEED_R = 0.1;
 
 
     /* PRESETS -------------------------------------------------------- */
