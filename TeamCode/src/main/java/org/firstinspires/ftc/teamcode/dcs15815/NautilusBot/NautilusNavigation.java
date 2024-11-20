@@ -54,10 +54,12 @@ public class NautilusNavigation extends DefenderBotSystem {
         otos.resetTracking();
     }
 
-    public void newOrigin() {
+    public void resetOriginKeepRotation() {
         SparkFunOTOS.Pose2D currentPose = otos.getPosition();
         otos.setPosition(new SparkFunOTOS.Pose2D(0, 0, currentPose.h));
-
+    }
+    public void resetOrigin() {
+        otos.setPosition(new SparkFunOTOS.Pose2D(0, 0, 0));
     }
 
     public static double calculateYawError(double currentYawInDegrees, double targetYawInDegrees) {

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 /*
-Alliance Color: Blue or Red
+Alliance Color: Blue
 Level: 0
 Preload: none
 Starting Position: touching wall, facing into Observation Zone,
@@ -30,8 +30,13 @@ public class AutonomousBlue0OpMode  extends LinearOpMode {
         waitForStart();
 
         bot.effects.heartbeatBlue();
-        bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 200);
-        bot.drivetrain.driveForwardByFrontLeftEncoder(0.1, 900);
+//        bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 200);
+//        bot.drivetrain.driveForwardByFrontLeftEncoder(0.1, 900);
+
+        bot.driveToPosition(0, -4, 0);
+        bot.navigation.resetOrigin();
+        bot.driveToPosition(36, 0, 0);
+        bot.navigation.resetOrigin();
         bot.effects.solidBlue();
 
 

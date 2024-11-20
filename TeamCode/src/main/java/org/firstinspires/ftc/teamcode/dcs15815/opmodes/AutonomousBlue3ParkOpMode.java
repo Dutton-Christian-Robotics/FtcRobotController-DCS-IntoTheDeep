@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
@@ -18,7 +19,7 @@ Actions:
     3) drive around submersible
     4) level 1 (3pts)
  */
-
+@Disabled
 @Autonomous(name = "Blue 3 Park", group = "3", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousBlue3ParkOpMode extends LinearOpMode {
     NautilusBot bot;

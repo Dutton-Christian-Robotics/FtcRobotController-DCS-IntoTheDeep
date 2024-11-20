@@ -89,8 +89,8 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     public static double INTAKE_LEFT_IN_POWER = 1;
     public static double INTAKE_RIGHT_IN_POWER = -1;
-    public static double INTAKE_LEFT_OUT_POWER = -.7;
-    public static double INTAKE_RIGHT_OUT_POWER = .7;
+    public static double INTAKE_LEFT_OUT_POWER = -.4;
+    public static double INTAKE_RIGHT_OUT_POWER = .4;
 
 
     /* GAMEPADS -------------------------------------------------------- */
