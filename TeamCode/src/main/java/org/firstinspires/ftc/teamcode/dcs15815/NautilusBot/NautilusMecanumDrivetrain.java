@@ -67,6 +67,10 @@ public class NautilusMecanumDrivetrain extends DefenderBotDrivetrain {
     }
 
     private void setProportionalPower(double bl, double fl, double fr, double br) {
+
+        // I think the way this is supposed to work is not scaling based on the largest,
+        // but instead off of the front left value—which should be he max value
+
         double largest = NautilusConfiguration.DRIVETRAIN_POWER_MAX;
         largest = Math.max(largest, Math.abs(bl));
         largest = Math.max(largest, Math.abs(fl));

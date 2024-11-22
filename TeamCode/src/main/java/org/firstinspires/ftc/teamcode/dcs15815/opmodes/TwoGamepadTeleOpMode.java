@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderAnalogModifier;
+import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderAlliance;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderDebouncer;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
@@ -66,6 +67,17 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         setup();
+
+        if (DefenderAlliance.getInstance().isRed()) {
+            telemetry.addData("RED ALLAINCE", "");
+        } else if (DefenderAlliance.getInstance().isBlue()) {
+            telemetry.addData("BLUE ALLAINCE", "");
+        } else {
+            telemetry.addData("NO ALLAINCE", "");
+        }
+
+
+        telemetry.update();
 
         waitForStart();
 
@@ -152,6 +164,12 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
 
 
             // ——— TELEMETRY  —————————————————————————————————
+
+            if (DefenderAlliance.getInstance().isRed()) {
+                telemetry.addData("RED ALLAINCE", "");
+            } else if (DefenderAlliance.getInstance().isBlue()) {
+                telemetry.addData("BLUE ALLAINCE", "");
+            }
 
             if (shoulderOverdrive) {
                 telemetry.addData("Shoulder", "OVERDRIVE");

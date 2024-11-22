@@ -67,8 +67,8 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     /* WRIST -------------------------------------------------------- */
 
     public static String WRIST_SERVO_NAME = "wrist_servo"; // Expansion Hub, Servo 0
-    public static double WRIST_SERVO_POSITION_TOP = 0.9;
-    public static double WRIST_SERVO_POSITION_TOPMIDDLE = 0.5;
+    public static double WRIST_SERVO_POSITION_TOP = 0.8;
+    public static double WRIST_SERVO_POSITION_TOPMIDDLE = 0.4;
 
     public static double WRIST_SERVO_POSITION_MIDDLE = 0.3;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
@@ -77,7 +77,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static DefenderPresets<Double> WRIST_PRESETS = new DefenderPresets<>(
             NautilusConfiguration.WRIST_SERVO_POSITION_TOP,
             NautilusConfiguration.WRIST_SERVO_POSITION_TOPMIDDLE,
-            NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE,
+//            NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE,
             NautilusConfiguration.WRIST_SERVO_POSITION_BOTTOM
     );
 
@@ -132,7 +132,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double NAVIGATION_R_KD = 0.003;
 
     public static double NAVIGATION_X_MAXPOWER = 0.6;
-    public static double NAVIGATION_Y_MAXPOWER = 0.3;
+    public static double NAVIGATION_Y_MAXPOWER = 0.4; // was .3
     public static double NAVIGATION_R_MAXPOWER = 0.3;
 
     public static long NAVIGATION_SETTLING_TIME = 500;

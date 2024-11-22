@@ -17,7 +17,7 @@ Actions:
     2) park (3pts)
  */
 
-@Autonomous(name = "Blue 0", group = "0", preselectTeleOp="TwoGamepadTeleOpMode")
+@Autonomous(name = "Blue - Park Only", group = "0", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousBlue0OpMode  extends LinearOpMode {
     NautilusBot bot;
 

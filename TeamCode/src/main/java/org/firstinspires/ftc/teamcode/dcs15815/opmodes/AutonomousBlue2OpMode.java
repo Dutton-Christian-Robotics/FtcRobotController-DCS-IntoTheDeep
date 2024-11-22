@@ -4,32 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderAlliance;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
-/*
-Alliance Color: Blue
-Level: 2
-Preload: blue sample
-Starting Position: touching wall, facing towards Observation Zone,
-    back of robot aligned with middle of tile A5
-Actions:
-    1) strafe away from wall
-    2) backup to baskets
-    3) elevate arm, shoulder
-    4) angle for better position
-    5) backup
-    6) make high basket (8pts)
-    7) navigate to submersible
-    8) Level 1 ascent (3pts)
- */
-@Autonomous(name = "Blue 2", group = "2", preselectTeleOp="TwoGamepadTeleOpMode")
+@Autonomous(name = "Blue - 1 Sample", group = "2", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousBlue2OpMode  extends LinearOpMode {
     NautilusBot bot;
 
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
+
+        DefenderAlliance.getInstance().setColor(DefenderAlliance.Color.BLUE);
 
         bot.effects.scanBlue();
 
