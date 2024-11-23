@@ -28,6 +28,7 @@ public abstract class Autonomous5OpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
+        bot.abortOpMode = () -> isStopRequested();
 
         setAlliance();
         if (DefenderAlliance.getInstance().isRed()) {
@@ -64,7 +65,7 @@ public abstract class Autonomous5OpMode extends LinearOpMode {
         ElapsedTime timer = new ElapsedTime();
         bot.driveToBotRelativePosition(14, 0, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 2400);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 2400) || isStopRequested();
         });
         bot.navigation.resetOrigin();
 
@@ -76,7 +77,7 @@ public abstract class Autonomous5OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(18, 0, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 3000);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 3000) || isStopRequested();
         });
         bot.navigation.resetOrigin();
 

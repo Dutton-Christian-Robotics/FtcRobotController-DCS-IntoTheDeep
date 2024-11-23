@@ -58,6 +58,7 @@ public abstract class Autonomous4bOpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
+        bot.abortOpMode = () -> isStopRequested();
 
         setAlliance();
         if (DefenderAlliance.getInstance().isRed()) {
@@ -88,7 +89,7 @@ public abstract class Autonomous4bOpMode extends LinearOpMode {
         ElapsedTime timer1 = new ElapsedTime();
         bot.driveToBotRelativePosition(12, -25, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer1.milliseconds() > 2000) || (timer1.milliseconds() > 5000);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer1.milliseconds() > 2000) || (timer1.milliseconds() > 5000) || isStopRequested();
         });
         bot.navigation.resetOrigin();
         deliverSample(0);
@@ -98,7 +99,7 @@ public abstract class Autonomous4bOpMode extends LinearOpMode {
         timer1.reset();
         bot.driveToBotRelativePosition(0, 6, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer1.milliseconds() > 1000) || (timer1.milliseconds() > 3000);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer1.milliseconds() > 1000) || (timer1.milliseconds() > 3000) || isStopRequested();
         });
         bot.navigation.resetOrigin();
 
@@ -128,7 +129,7 @@ public abstract class Autonomous4bOpMode extends LinearOpMode {
         ElapsedTime timer2 = new ElapsedTime();
         bot.driveToBotRelativePosition(-27.5, -7, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer2.milliseconds() > 2000) || (timer2.milliseconds() > 3700);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer2.milliseconds() > 2000) || (timer2.milliseconds() > 3700) || isStopRequested();
         });
 
 

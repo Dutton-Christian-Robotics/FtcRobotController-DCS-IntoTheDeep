@@ -23,6 +23,7 @@ public class NautilusBot extends DefenderBot {
     public NautilusEffects effects;
     public NautilusNavigation navigation;
     private boolean useDebugging = false;
+    public BooleanSupplier abortOpMode = () -> false;
 
     //    public DefenderPresets<SBBArmPosition> armPresets;
 //    public DefenderDelayedSequence grabPixelSequence;
@@ -109,7 +110,7 @@ public class NautilusBot extends DefenderBot {
 
     // On NautilusBot, the OTOS is mounted so that the y axis measures forward and backward
     public void driveToBotRelativePosition(double targetY, double targetX, double targetH) {
-        driveToBotRelativePosition(targetY, targetX, targetH, () -> false,
+        driveToBotRelativePosition(targetY, targetX, targetH, abortOpMode,
             NautilusConfiguration.NAVIGATION_Y_KP, NautilusConfiguration.NAVIGATION_Y_KI, NautilusConfiguration.NAVIGATION_Y_KD,
             NautilusConfiguration.NAVIGATION_X_KP, NautilusConfiguration.NAVIGATION_X_KI, NautilusConfiguration.NAVIGATION_X_KD,
             NautilusConfiguration.NAVIGATION_R_KP, NautilusConfiguration.NAVIGATION_R_KI, NautilusConfiguration.NAVIGATION_R_KD,

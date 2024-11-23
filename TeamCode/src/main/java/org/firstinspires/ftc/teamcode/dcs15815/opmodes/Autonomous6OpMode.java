@@ -66,6 +66,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
+        bot.abortOpMode = () -> isStopRequested();
 
         setAlliance();
         if (DefenderAlliance.getInstance().isRed()) {
@@ -101,7 +102,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         ElapsedTime timer = new ElapsedTime();
         bot.driveToBotRelativePosition(12, -25, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 2400);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 2400) || isStopRequested();
         });
         bot.navigation.resetOrigin();
         deliverSample(0);
@@ -111,7 +112,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(0, 6, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 1500);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 1500) || isStopRequested();
         });
         bot.navigation.resetOrigin();
 
@@ -141,7 +142,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(-27.5, -7, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2500);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2500) || isStopRequested();
         });
 
 
@@ -152,7 +153,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(0, 14, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2000);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2000) || isStopRequested();
         });
 
 
@@ -177,7 +178,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(21, 0, angle, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2200);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2200) || isStopRequested();
         });
         bot.intake.stop();
         bot.navigation.resetOrigin();
@@ -189,7 +190,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(-27, -12, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2500);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2500) || isStopRequested();
         });
         bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
         bot.wrist.gotoUpPosition();
@@ -198,7 +199,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         timer.reset();
         bot.driveToBotRelativePosition(0, 0, 45, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 1200);
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 1200) || isStopRequested();
         });
 
 //        deliverSample(0);
