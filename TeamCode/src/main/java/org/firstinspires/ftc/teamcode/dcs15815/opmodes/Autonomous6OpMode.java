@@ -188,7 +188,7 @@ public abstract class Autonomous6OpMode extends LinearOpMode {
         bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX, NautilusConfiguration.SHOULDER_POWER_MAX);
         bot.navigation.resetOtosAndResetOrigin();
         timer.reset();
-        bot.driveToBotRelativePosition(-27, -12, 0, () -> {
+        bot.driveToBotRelativePosition(-26, -12, 0, () -> {
             SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
             return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 1000) || (timer.milliseconds() > 2500) || isStopRequested();
         });
