@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderAlliance;
@@ -24,19 +23,22 @@ public class AutonomousBlue2OpMode  extends LinearOpMode {
 
         bot.effects.heartbeatBlue();
 
-        // Get away from the wall so we don't get stuck
-//        bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 275);
-        bot.driveToPosition(0, -8, 0);
+//        // Get away from the wall so we don't get stuck
+//        bot.driveToPosition(0, -8, 0);
+//        bot.navigation.resetOrigin();
+//
+//        // Backup to the net zone
+//        bot.driveToPosition(-16, 0, 0);
+//        bot.navigation.resetOrigin();
+
+        // Diagonal away from wall to the netzone
+        bot.driveToBotRelativePosition(-16, -8, 0);
         bot.navigation.resetOrigin();
 
-        // Backup to the net zone
-//        bot.drivetrain.driveBackwardByFrontLeftEncoder(0.1, 650, true);
-        bot.driveToPosition(-16, 0, 0);
-        bot.navigation.resetOrigin();
 
         // Turn so we're perpendicular to the baskets
 //        bot.drivetrain.turnLeftByFrontLeftEncoder(.1, 400);
-        bot.driveToPosition(0, 0, -45);
+        bot.driveToBotRelativePosition(0, 0, -45);
         bot.navigation.resetOrigin();
 
         // Raise the arm and shoulder
@@ -52,7 +54,7 @@ public class AutonomousBlue2OpMode  extends LinearOpMode {
         // Snug up to the baskets
 //        bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 80);
 //        sleep(250);
-        bot.driveToPosition(-4, 0, 0);
+        bot.driveToBotRelativePosition(-4, 0, 0);
         bot.navigation.resetOrigin();
 
         // Kick out the sample
@@ -62,35 +64,13 @@ public class AutonomousBlue2OpMode  extends LinearOpMode {
 
         // Get a safe distance from the baskets
 //        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 200);
-        bot.driveToPosition(14, 0, 0);
+        bot.driveToBotRelativePosition(14, 0, 0);
         bot.navigation.resetOrigin();
 
         // Bring the arm down
         bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MIN);
         sleep(2000);
 
-//        // Straighten out
-//        bot.drivetrain.turnRightByFrontLeftEncoder(.1, 400);
-//
-//
-//        // Get into driving position
-//        bot.drivetrain.driveForwardByFrontLeftEncoder(.1, 300);
-//        bot.drivetrain.turnLeft90ByFrontLeftEncoder(.1);
-//
-//        // Travel towards submersible
-//        bot.drivetrain.driveForwardByFrontLeftEncoder(.1,1500);
-//        bot.drivetrain.turnLeft90ByFrontLeftEncoder(.1);
-//
-//        // Extend the arm
-//        bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
-//        sleep(1000);
-//
-//        // Overdrive the shoulder back for contact
-//        bot.shoulderOverdrive();
-//
-//
-//        // Backup to the submersible
-//        bot.drivetrain.driveBackwardByFrontLeftEncoder(.2, 700);
 
 
         bot.effects.solidBlue();

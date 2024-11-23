@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -41,6 +40,14 @@ public class NautilusShoulder extends DefenderBotSystem {
 
     public void setPosition(int p) {
         setPosition(p, NautilusConfiguration.SHOULDER_POWER_MAX);
+    }
+
+    public void gotoAutonIntakePosition() {
+        setPosition(NautilusConfiguration.SHOULDER_POSITION_AUTON_INTAKE);
+    }
+
+    public void gotoAutonTravelPosition() {
+        setPosition(NautilusConfiguration.SHOULDER_POSITION_AUTON_TRAVEL);
     }
 
     public void setPosition(int p, double power) {

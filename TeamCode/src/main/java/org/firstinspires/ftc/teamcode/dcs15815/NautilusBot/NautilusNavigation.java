@@ -30,6 +30,7 @@ public class NautilusNavigation extends DefenderBotSystem {
         otos.setAngularUnit(AngleUnit.DEGREES);
 
         SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0, 0, 0);
+//        SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0, 0, 90);
         otos.setOffset(offset);
 
         otos.setLinearScalar(NautilusConfiguration.NAVIGATION_LINEAR_SCALE);
@@ -52,6 +53,12 @@ public class NautilusNavigation extends DefenderBotSystem {
     public void resetOtos() {
         otos.calibrateImu();
         otos.resetTracking();
+    }
+
+    public void resetOtosAndResetOrigin() {
+        otos.calibrateImu();
+        otos.resetTracking();
+        otos.setPosition(new SparkFunOTOS.Pose2D(0, 0, 0));
     }
 
     public void resetOriginKeepRotation() {

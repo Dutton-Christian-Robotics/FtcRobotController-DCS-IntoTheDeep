@@ -51,6 +51,11 @@ public class NautilusArm extends DefenderBotSystem {
         rightMotor.setPower(NautilusConfiguration.ARM_POWER_MAX);
     }
 
+    public void gotoAutonIntakePosition() {
+        setPosition(NautilusConfiguration.ARM_POSITION_AUTON_INTAKE);
+    }
+
+
     public int getPosition() {
         return leftMotor.getCurrentPosition();
     }

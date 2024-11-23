@@ -64,17 +64,29 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
 
     }
 
+    public void setIdleEffectsByAllianceColor() {
+        if (DefenderAlliance.getInstance().isRed()) {
+            bot.effects.heartbeatRed();
+        } else if (DefenderAlliance.getInstance().isBlue()) {
+            bot.effects.heartbeatBlue();
+        } else {
+            bot.effects.wavesParty();
+        }
+
+    }
+
     @Override
     public void runOpMode() {
         setup();
 
         if (DefenderAlliance.getInstance().isRed()) {
-            telemetry.addData("RED ALLAINCE", "");
+            telemetry.addData("Alliance", "RED");
         } else if (DefenderAlliance.getInstance().isBlue()) {
-            telemetry.addData("BLUE ALLAINCE", "");
+            telemetry.addData("Alliance", "BLUE");
         } else {
-            telemetry.addData("NO ALLAINCE", "");
+            telemetry.addData("Alliance", "unknown");
         }
+        setIdleEffectsByAllianceColor();
 
 
         telemetry.update();
@@ -193,14 +205,17 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
 
             if (bot.intake.isLoaded()) {
                 telemetry.addData("Intake", "empty");
-                bot.effects.rainbow();
+                setIdleEffectsByAllianceColor();
             } else {
                 telemetry.addData("Intake", "LOADED");
                 bot.effects.strobeGold();
             }
-//            telemetry.addData("Lift", bot.lift.getPosition());
-//            telemetry.addData("Tilt", bot.tilt.getPosition());
-//            telemetry.addData("Stickypad", bot.stickyPad.getPosition());
+
+            if (true) {
+                telemetry.addData("Shoulder", bot.shoulder.getPosition());
+                telemetry.addData("Arm", bot.arm.getPosition());
+            }
+
             telemetry.update();
 
         }

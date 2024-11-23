@@ -23,6 +23,9 @@ public class NautilusWrist extends DefenderBotSystem {
         servo.setPosition(n);
     }
 
+    public void gotoAutonIntakePosition() {
+        servo.setPosition(NautilusConfiguration.WRIST_SERVO_POSITION_AUTON_INTAKE);
+    }
 
 
     public void gotoUpPosition() {

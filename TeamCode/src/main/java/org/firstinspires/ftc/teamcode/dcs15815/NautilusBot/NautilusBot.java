@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderPIDController;
@@ -69,6 +70,12 @@ public class NautilusBot extends DefenderBot {
 
     }
 
+    public void gotoAutonIntakePosition() {
+        wrist.gotoAutonIntakePosition();
+        arm.gotoAutonIntakePosition();
+        shoulder.gotoAutonIntakePosition();
+    }
+
 //    public void driveToPositionOld(double targetY, double targetX, double targetH) {
 //        double error = 0;
 //        double yError, xError, yawError;
@@ -101,27 +108,35 @@ public class NautilusBot extends DefenderBot {
 //    }
 
     // On NautilusBot, the OTOS is mounted so that the y axis measures forward and backward
-    public void driveToPosition(double targetY, double targetX, double targetH) {
-        driveToPosition(targetY, targetX, targetH, () -> false,
+    public void driveToBotRelativePosition(double targetY, double targetX, double targetH) {
+        driveToBotRelativePosition(targetY, targetX, targetH, () -> false,
             NautilusConfiguration.NAVIGATION_Y_KP, NautilusConfiguration.NAVIGATION_Y_KI, NautilusConfiguration.NAVIGATION_Y_KD,
             NautilusConfiguration.NAVIGATION_X_KP, NautilusConfiguration.NAVIGATION_X_KI, NautilusConfiguration.NAVIGATION_X_KD,
             NautilusConfiguration.NAVIGATION_R_KP, NautilusConfiguration.NAVIGATION_R_KI, NautilusConfiguration.NAVIGATION_R_KD,
             NautilusConfiguration.NAVIGATION_Y_MAXPOWER, NautilusConfiguration.NAVIGATION_X_MAXPOWER, NautilusConfiguration.NAVIGATION_R_MAXPOWER
         );
     }
-    public void driveToPosition(double targetY, double targetX, double targetH, BooleanSupplier abort, double y_maxPower, double x_maxPower, double r_maxPower) {
-        driveToPosition(targetY, targetX, targetH, abort,
+    public void driveToBotRelativePosition(double targetY, double targetX, double targetH, BooleanSupplier abort) {
+        driveToBotRelativePosition(targetY, targetX, targetH, abort,
+                NautilusConfiguration.NAVIGATION_Y_KP, NautilusConfiguration.NAVIGATION_Y_KI, NautilusConfiguration.NAVIGATION_Y_KD,
+                NautilusConfiguration.NAVIGATION_X_KP, NautilusConfiguration.NAVIGATION_X_KI, NautilusConfiguration.NAVIGATION_X_KD,
+                NautilusConfiguration.NAVIGATION_R_KP, NautilusConfiguration.NAVIGATION_R_KI, NautilusConfiguration.NAVIGATION_R_KD,
+                NautilusConfiguration.NAVIGATION_Y_MAXPOWER, NautilusConfiguration.NAVIGATION_X_MAXPOWER, NautilusConfiguration.NAVIGATION_R_MAXPOWER
+        );
+    }
+    public void driveToBotRelativePosition(double targetY, double targetX, double targetH, BooleanSupplier abort, double y_maxPower, double x_maxPower, double r_maxPower) {
+        driveToBotRelativePosition(targetY, targetX, targetH, abort,
             NautilusConfiguration.NAVIGATION_Y_KP, NautilusConfiguration.NAVIGATION_Y_KI, NautilusConfiguration.NAVIGATION_Y_KD,
             NautilusConfiguration.NAVIGATION_X_KP, NautilusConfiguration.NAVIGATION_X_KI, NautilusConfiguration.NAVIGATION_X_KD,
             NautilusConfiguration.NAVIGATION_R_KP, NautilusConfiguration.NAVIGATION_R_KI, NautilusConfiguration.NAVIGATION_R_KD,
                 y_maxPower, x_maxPower, r_maxPower
         );
     }
-    public void driveToPosition(double targetY, double targetX, double targetH, BooleanSupplier abort,
-                                double y_kP, double y_kI, double y_kD,
-                                double x_kP, double x_kI, double x_kD,
-                                double r_kP, double r_kI, double r_kD,
-                                double y_maxPower, double x_maxPower, double r_maxPower) {
+    public void driveToBotRelativePosition(double targetY, double targetX, double targetH, BooleanSupplier abort,
+                                           double y_kP, double y_kI, double y_kD,
+                                           double x_kP, double x_kI, double x_kD,
+                                           double r_kP, double r_kI, double r_kD,
+                                           double y_maxPower, double x_maxPower, double r_maxPower) {
 
         double error = 0;
         double yError = 0, xError = 0, rError = 0, sumError;
@@ -254,6 +269,61 @@ public class NautilusBot extends DefenderBot {
 //        } while (sumError > 0.1);
 
     }
+
+//    public void driveToFieldPosition(double targetX, double targetY, double targetH) {
+//        double maxError = 0;
+//        double x, y, h;
+//        double forward, strafe, rotate;
+//        SparkFunOTOS.Pose2D pose;
+//
+//        do {
+//            pose = navigation.otos.getPosition();
+//            x = targetX - pose.x;
+//            y = targetY - pose.y;
+//            h = NautilusNavigation.calculateYawError(pose.h, targetH);
+//
+//            maxError = Math.max(Math.abs(x), Math.abs(y));
+//            maxError = Math.max(maxError, Math.abs(h) / 3);
+//
+//            double currentYawRadians = pose.h * 3.1415 / 180;
+//            double x_rotated = x * Math.cos(-currentYawRadians) - y * Math.sin(-currentYawRadians);
+//            double y_rotated = x * Math.sin(-currentYawRadians) + y * Math.cos(-currentYawRadians);
+//
+//            strafe = Range.clip(y * -1, -NautilusConfiguration.NAVIGATION_Y_MAXPOWER, NautilusConfiguration.NAVIGATION_Y_MAXPOWER);
+//            rotate = Range.clip(h * -1, -NautilusConfiguration.NAVIGATION_X_MAXPOWER, NautilusConfiguration.NAVIGATION_X_MAXPOWER);
+//            forward = Range.clip( x * 1, -NautilusConfiguration.NAVIGATION_R_MAXPOWER, NautilusConfiguration.NAVIGATION_R_MAXPOWER);
+//
+//
+////            setPower(x_rotated - y_rotated + h, x_rotated + y_rotated + h, x_rotated - y_rotated - h, x_rotated + y_rotated - h);
+//            drivetrain.drive(forward, strafe, rotate);
+//
+//            telemetry.addData("now", roundDouble(pose.x) + ", " + roundDouble(pose.y) + ", " + roundDouble(pose.h));
+//            telemetry.addData("target", targetX + ", " + targetY + ", " + targetH);
+//            telemetry.addData("x", roundDouble(x));
+//            telemetry.addData("y", roundDouble(y));
+//            telemetry.addData("h", roundDouble(h));
+//            telemetry.addData("forward", roundDouble(forward));
+//            telemetry.addData("strafe", roundDouble(strafe));
+//            telemetry.addData("rotate", roundDouble(rotate));
+//            telemetry.addData("max error", roundDouble(maxError));
+//            telemetry.update();
+//
+//
+//
+//
+//        } while (maxError > 0.75);
+//        stopDriving();
+//
+//    }
+
+    public double roundDouble(double n) {
+        return roundDouble(n, 3);
+    }
+    public double roundDouble(double n, int i) {
+        double f = Math.pow(10, i);
+        return Math.floor(n * f) / f;
+    }
+
 
 
 

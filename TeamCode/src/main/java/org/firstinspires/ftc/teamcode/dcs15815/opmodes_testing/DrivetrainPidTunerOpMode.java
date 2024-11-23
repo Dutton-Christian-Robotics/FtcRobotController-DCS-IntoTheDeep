@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.dcs15815.opmodes_testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -7,6 +8,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtiliti
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
+@Disabled
 @TeleOp(name = "Drivetrain PID Tuning Test", group = "Testing")
 public class DrivetrainPidTunerOpMode extends LinearOpMode {
     NautilusBot bot;
@@ -215,7 +217,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
             if (tuningX) {
                 if (negativeTestingDirection) {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             0, -testDriveDistance, 0,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,
@@ -227,7 +229,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
                     bot.effects.wavesParty();
                 } else {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             0, testDriveDistance, 0,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,
@@ -241,7 +243,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
             } else if (tuningY) {
                 if (negativeTestingDirection) {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             -testDriveDistance, 0, 0,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,
@@ -253,7 +255,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
                     bot.effects.wavesParty();
                 } else {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             testDriveDistance, 0, 0,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,
@@ -275,7 +277,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
                 }
                 if (negativeTestingDirection) {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             0, 0, -angle,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,
@@ -287,7 +289,7 @@ public class DrivetrainPidTunerOpMode extends LinearOpMode {
                     bot.effects.wavesParty();
                 } else {
                     bot.effects.strobeWhite();
-                    bot.driveToPosition(
+                    bot.driveToBotRelativePosition(
                             0, 0, angle,
 //                        () -> false,
                             () -> !opModeIsActive()  || gamepad1.guide,

@@ -1,18 +1,11 @@
 package org.firstinspires.ftc.teamcode.dcs15815.NautilusBot;
 
-import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBot;
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderBot.DefenderBotSystem;
-import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderDelayedSequence;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class NautilusIntake extends DefenderBotSystem {
 
@@ -35,8 +28,17 @@ public class NautilusIntake extends DefenderBotSystem {
     }
 
     public void expel() {
-        leftServo.setPower(NautilusConfiguration.INTAKE_LEFT_OUT_POWER);
-        rightServo.setPower(NautilusConfiguration.INTAKE_RIGHT_OUT_POWER);
+        expel(NautilusConfiguration.INTAKE_LEFT_OUT_POWER, NautilusConfiguration.INTAKE_RIGHT_OUT_POWER);
+    }
+
+    public void expelToTheLeft() {
+        expel(NautilusConfiguration.INTAKE_LEFT_OUT_TO_LEFT_POWER, NautilusConfiguration.INTAKE_RIGHT_OUT_TO_LEFT_POWER);
+    }
+
+
+    public void expel(double leftPower, double rightPower) {
+        leftServo.setPower(leftPower);
+        rightServo.setPower(rightPower);
 
     }
 

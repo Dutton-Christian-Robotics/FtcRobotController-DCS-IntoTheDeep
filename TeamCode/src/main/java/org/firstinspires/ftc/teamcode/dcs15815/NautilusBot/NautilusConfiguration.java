@@ -38,6 +38,9 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static int SHOULDER_POSITION_MAX = 3200;
     public static int SHOULDER_POSITION_MIN = 0;
     public static int SHOULDER_POSITION_ASCENDED = -200;
+    public static int SHOULDER_POSITION_AUTON_INTAKE = -125;
+    public static int SHOULDER_POSITION_AUTON_TRAVEL = 500;
+
 
     public static int SHOULDER_POSITION_DELTA = 250;
     // left straight out 1093
@@ -47,7 +50,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     // left straight up 2858
     // right straight up 2757
 
-    /* ARM -------------------------------------------------------- */
+/* ARM -------------------------------------------------------- */
 
     public static String ARM_LEFT_MOTOR_NAME = "arm_left_motor"; // Expansion Hub, Motor 2
     public static String ARM_RIGHT_MOTOR_NAME = "arm_right_motor"; // Expansion Hub, Motor 3
@@ -59,29 +62,32 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static int ARM_POSITION_ASCENDED = -400;
 
     public static int ARM_POSITION_MIN = 0;
-    public static int ARM_POSITION_MAX = 3000;
+    public static int ARM_POSITION_MAX = 3100; // 3200 appears to cause battery fuse to blow
     public static int ARM_POSITION_DELTA = 125;
+    public static int ARM_POSITION_AUTON_INTAKE = -20;
 
     // all the way out 3000
 
-    /* WRIST -------------------------------------------------------- */
+/* WRIST -------------------------------------------------------- */
 
     public static String WRIST_SERVO_NAME = "wrist_servo"; // Expansion Hub, Servo 0
     public static double WRIST_SERVO_POSITION_TOP = 0.8;
+    public static double WRIST_SERVO_POSITION_AUTON_INTAKE = 0.6;
     public static double WRIST_SERVO_POSITION_TOPMIDDLE = 0.4;
-
     public static double WRIST_SERVO_POSITION_MIDDLE = 0.3;
     public static double WRIST_SERVO_POSITION_BOTTOM = 0.15;
     public static double WRIST_POSITION_DELTA = 0.1;
 
     public static DefenderPresets<Double> WRIST_PRESETS = new DefenderPresets<>(
             NautilusConfiguration.WRIST_SERVO_POSITION_TOP,
+            NautilusConfiguration.WRIST_SERVO_POSITION_AUTON_INTAKE,
+
             NautilusConfiguration.WRIST_SERVO_POSITION_TOPMIDDLE,
 //            NautilusConfiguration.WRIST_SERVO_POSITION_MIDDLE,
             NautilusConfiguration.WRIST_SERVO_POSITION_BOTTOM
     );
 
-    /* INTAKE -------------------------------------------------------- */
+/* INTAKE -------------------------------------------------------- */
 
     public static String INTAKE_LEFT_SERVO_NAME = "intake_left_servo"; // Expansion Hub, Servo 1
     public static String INTAKE_RIGHT_SERVO_NAME = "intake_right_servo"; // Expansion Hub, Servo 2
@@ -89,11 +95,13 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
 
     public static double INTAKE_LEFT_IN_POWER = 1;
     public static double INTAKE_RIGHT_IN_POWER = -1;
-    public static double INTAKE_LEFT_OUT_POWER = -.4;
-    public static double INTAKE_RIGHT_OUT_POWER = .4;
+    public static double INTAKE_LEFT_OUT_POWER = -0.4;
+    public static double INTAKE_RIGHT_OUT_POWER = 0.4;
+    public static double INTAKE_LEFT_OUT_TO_LEFT_POWER = -0.8;
+    public static double INTAKE_RIGHT_OUT_TO_LEFT_POWER = 0.0;
 
 
-    /* GAMEPADS -------------------------------------------------------- */
+/* GAMEPADS -------------------------------------------------------- */
 
     public static double GAMEPAD2_RIGHT_STICK_CURVE = 2;
     public static double GAMEPAD2_RIGHT_STICK_MAX = 1;
@@ -105,7 +113,7 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double GAMEPAD1_RIGHT_STICK_X_MAX = 0.5;
 
 
-    /* NAVIGATION -------------------------------------------------------- */
+/* NAVIGATION -------------------------------------------------------- */
 
     public static String IMU_SENSOR_NAME = "imu";
     public static AxesOrder IMU_AXES_ORDER = AxesOrder.XYZ;
@@ -131,9 +139,9 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static double NAVIGATION_R_KI = 1.0;
     public static double NAVIGATION_R_KD = 0.003;
 
-    public static double NAVIGATION_X_MAXPOWER = 0.6;
-    public static double NAVIGATION_Y_MAXPOWER = 0.4; // was .3
-    public static double NAVIGATION_R_MAXPOWER = 0.3;
+    public static double NAVIGATION_X_MAXPOWER = 0.6; // was 0.6
+    public static double NAVIGATION_Y_MAXPOWER = 0.3; // was .4
+    public static double NAVIGATION_R_MAXPOWER = 0.4; // was 0.3
 
     public static long NAVIGATION_SETTLING_TIME = 500;
 

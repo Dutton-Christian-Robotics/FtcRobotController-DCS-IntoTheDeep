@@ -33,9 +33,9 @@ public class AutonomousBlue0OpMode  extends LinearOpMode {
 //        bot.drivetrain.strafeLeftByFrontLeftEncoder(.4, 200);
 //        bot.drivetrain.driveForwardByFrontLeftEncoder(0.1, 900);
 
-        bot.driveToPosition(0, -4, 0);
+        bot.driveToBotRelativePosition(0, -4, 0);
         bot.navigation.resetOrigin();
-        bot.driveToPosition(36, 0, 0);
+        bot.driveToBotRelativePosition(36, 0, 0);
         bot.navigation.resetOrigin();
         bot.effects.solidBlue();
 

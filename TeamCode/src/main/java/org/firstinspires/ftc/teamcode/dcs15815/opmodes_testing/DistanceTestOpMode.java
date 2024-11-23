@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
+@Disabled
 @TeleOp(name = "Distance Test", group = "Testing")
 public class DistanceTestOpMode extends LinearOpMode {
     NautilusBot bot;
