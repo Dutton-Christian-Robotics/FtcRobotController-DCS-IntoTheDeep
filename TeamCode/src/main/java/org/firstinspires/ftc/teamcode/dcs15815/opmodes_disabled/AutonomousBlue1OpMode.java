@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
+package org.firstinspires.ftc.teamcode.dcs15815.opmodes_disabled;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
 /*
-Alliance Color: Red
+Alliance Color: Blue
 Level: 1
 Preload: blue sample
 Starting Position: touching wall, facing into net,
@@ -20,21 +20,20 @@ Actions:
     4) navigate to submersible
     5) Level 1 ascent (3pts)
  */
-
 @Disabled
-@Autonomous(name = "Red 1", group = "1", preselectTeleOp="TwoGamepadTeleOpMode")
-public class AutonomousRed1OpMode  extends LinearOpMode {
+@Autonomous(name = "Blue 1", group = "1", preselectTeleOp="TwoGamepadTeleOpMode")
+public class AutonomousBlue1OpMode  extends LinearOpMode {
     NautilusBot bot;
 
     @Override
     public void runOpMode() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
 
-        bot.effects.scanRed();
+        bot.effects.scanBlue();
 
         waitForStart();
 
-        bot.effects.heartbeatRed();
+        bot.effects.heartbeatBlue();
         bot.drivetrain.strafeRightByFrontLeftEncoder(.4, 100);
 
         bot.drivetrain.driveForwardByFrontLeftEncoder(0.1, 650);
@@ -51,7 +50,7 @@ public class AutonomousRed1OpMode  extends LinearOpMode {
 
         bot.drivetrain.driveBackwardByFrontLeftEncoder(.1, 500);
 
-        bot.effects.solidRed();
+        bot.effects.solidBlue();
 
 
     }

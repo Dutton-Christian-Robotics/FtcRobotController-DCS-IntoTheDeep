@@ -41,6 +41,15 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static int SHOULDER_POSITION_AUTON_INTAKE = -125;
     public static int SHOULDER_POSITION_AUTON_TRAVEL = 500;
 
+    public static int SHOULDER_POSITION_AUTON_SPECIMEN_INTAKE_PRE = 3010;
+    public static int SHOULDER_POSITION_AUTON_SPECIMEN_INTAKE_POST = 3010;
+
+    public static int SHOULDER_POSITION_AUTON_SPECIMEN_DELIVERY_PRE = 3333;
+    public static int SHOULDER_POSITION_AUTON_SPECIMEN_DELIVERY_POST = 3333;
+
+
+
+
 
     public static int SHOULDER_POSITION_DELTA = 250;
     // left straight out 1093
@@ -65,6 +74,13 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static int ARM_POSITION_MAX = 3100; // 3200 appears to cause battery fuse to blow
     public static int ARM_POSITION_DELTA = 125;
     public static int ARM_POSITION_AUTON_INTAKE = -20;
+
+    public static int ARM_POSITION_AUTON_SPECIMEN_INTAKE_PRE = 1103;
+    public static int ARM_POSITION_AUTON_SPECIMEN_INTAKE_POST = 0;
+
+    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_PRE = 2917;
+    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_POST = 1720;
+
 
     // all the way out 3000
 

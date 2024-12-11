@@ -20,6 +20,7 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
     private DefenderDebouncer gamepad2LeftBumperDebouncer, gamepad2RightBumperDebouncer;
     private DefenderDebouncer gamepad2DpadUpDebouncer, gamepad2DpadDownDebouncer;
     private DefenderDebouncer gamepad1StartDebouncer;
+    private DefenderDebouncer gamepad2LeftTriggerDebouncer, gamepad2RightTriggerDebouncer;
 
     public void setup() {
         bot = new NautilusBot(hardwareMap, NautilusConfiguration.class, telemetry);
@@ -53,6 +54,14 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
                 intakeState = 0;
             }
         });
+        gamepad2LeftTriggerDebouncer = new DefenderDebouncer(500, () -> {
+            bot.wrist.gotoNextUp();
+        });
+        gamepad2RightTriggerDebouncer = new DefenderDebouncer(500, () -> {
+            bot.wrist.gotoNextDown();
+        });
+
+
         gamepad2DpadUpDebouncer = new DefenderDebouncer(500, () -> {
            bot.wrist.gotoNextUp();
         });
@@ -172,6 +181,11 @@ public class TwoGamepadTeleOpMode extends LinearOpMode {
                 gamepad2DpadUpDebouncer.run();
             } else if (gamepad2.dpad_down) {
                 gamepad2DpadDownDebouncer.run();
+            }
+            if (gamepad2.left_trigger > 0) {
+                gamepad2LeftTriggerDebouncer.run();
+            } else if (gamepad2.right_trigger > 0) {
+                gamepad2RightTriggerDebouncer.run();
             }
 
 

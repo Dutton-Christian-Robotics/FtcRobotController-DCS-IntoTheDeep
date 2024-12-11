@@ -1,12 +1,14 @@
-package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
+package org.firstinspires.ftc.teamcode.dcs15815.opmodes_disabled;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtilities.DefenderAlliance;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
+@Disabled
 @Autonomous(name = "Blue - 1 Sample", group = "2", preselectTeleOp="TwoGamepadTeleOpMode")
 public class AutonomousBlue2OpMode  extends LinearOpMode {
     NautilusBot bot;

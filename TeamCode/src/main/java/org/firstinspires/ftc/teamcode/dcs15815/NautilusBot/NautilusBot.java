@@ -271,6 +271,31 @@ public class NautilusBot extends DefenderBot {
 
     }
 
+    public void driveToBotRelativePositionWithTimeout(
+            double targetY, double targetX, double targetH,
+            double initialDelay, double maxTime
+    ) {
+        ElapsedTime timer = new ElapsedTime();
+        driveToBotRelativePosition(targetY, targetX, targetH, () -> {
+            SparkFunOTOS.Pose2D velocity = navigation.otos.getVelocity();
+            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > initialDelay) || (timer.milliseconds() > maxTime) || abortOpMode.getAsBoolean();
+        });
+        navigation.resetOrigin();
+    }
+
+    public void correctForAngle(double tolerance) {
+        SparkFunOTOS.Pose2D pose = navigation.otos.getPosition();
+        double angle = pose.h;
+
+        if (Math.abs(angle) > tolerance) {
+            driveToBotRelativePosition(0, 0, angle);
+        }
+        navigation.resetOrigin();
+
+    }
+
+
+
 //    public void driveToFieldPosition(double targetX, double targetY, double targetH) {
 //        double maxError = 0;
 //        double x, y, h;

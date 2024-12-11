@@ -8,22 +8,13 @@ import org.firstinspires.ftc.teamcode.dcs15815.DefenderFramework.DefenderUtiliti
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusBot;
 import org.firstinspires.ftc.teamcode.dcs15815.NautilusBot.NautilusConfiguration;
 
-/*
-Alliance Color: Blue or Red
-Level: 4
-Preload: neutral sample
-Starting Position: touching wall, facing towards Observation Zone,
-    back of robot aligned with lower edge of tile A5/A6 border
-Actions:
-    1)
- */
-public abstract class Autonomous3OpMode extends LinearOpMode {
-    NautilusBot bot;
+
+public abstract class IntoTheDeepAutonomousOpMode extends LinearOpMode {
+    public NautilusBot bot;
     DefenderAlliance.Color allianceColor = DefenderAlliance.Color.UNKNOWN;
 
-
-
     public abstract void setAlliance();
+
 
     @Override
     public void runOpMode() {
@@ -59,38 +50,8 @@ public abstract class Autonomous3OpMode extends LinearOpMode {
             bot.effects.wavesParty();
         }
 
-
-        bot.shoulder.gotoAutonTravelPosition();
-
-        ElapsedTime timer = new ElapsedTime();
-        bot.driveToBotRelativePosition(14, 0, 0, () -> {
-            SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 2400) || isStopRequested();
-        });
-        bot.navigation.resetOrigin();
-
-        bot.shoulder.setPosition(2000);
-        sleep(500);
-        bot.arm.setPosition(700);
-
-
-        timer.reset();
-        bot.driveToBotRelativePosition(18, 0, 0, () -> {
-            SparkFunOTOS.Pose2D velocity = bot.navigation.otos.getVelocity();
-            return (Math.abs(velocity.x) < 1 && Math.abs(velocity.y) < 1 && Math.abs(velocity.h) < 1 && timer.milliseconds() > 2000) || (timer.milliseconds() > 3000) || isStopRequested();
-        });
-        bot.navigation.resetOrigin();
-
-        bot.intake.intake();
-
-        bot.wrist.setPosition(NautilusConfiguration.WRIST_SERVO_POSITION_BOTTOM);
-        sleep(1200);
-        bot.arm.setPosition(0);
-        sleep(1000);
-        bot.intake.stop();
-
-
-
+        // DO SPECIFIC OPMODE STUFF HERE
+        performAutonomous();
 
         if (DefenderAlliance.getInstance().isRed()) {
             bot.effects.solidRed();
@@ -101,5 +62,7 @@ public abstract class Autonomous3OpMode extends LinearOpMode {
         }
 
     }
+
+    public abstract void performAutonomous();
 
 }

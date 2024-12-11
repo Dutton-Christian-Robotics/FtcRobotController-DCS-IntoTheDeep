@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.dcs15815.opmodes;
+package org.firstinspires.ftc.teamcode.dcs15815.opmodes_disabled;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
