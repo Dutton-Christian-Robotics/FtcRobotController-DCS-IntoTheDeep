@@ -80,7 +80,7 @@ public abstract class Autonomous6OpMode extends IntoTheDeepAutonomousOpMode {
 
         // Back away from neutral samples
 
-        bot.driveToBotRelativePositionWithTimeout(-27.5, -7, 0, 1000, 2500);
+        bot.driveToBotRelativePositionWithTimeout(-26.5, -7, 0, 1000, 2500); // was -27.5
 
         deliverSample(0);
 

@@ -78,8 +78,8 @@ public class NautilusConfiguration extends DefenderBotConfiguration {
     public static int ARM_POSITION_AUTON_SPECIMEN_INTAKE_PRE = 1103;
     public static int ARM_POSITION_AUTON_SPECIMEN_INTAKE_POST = 0;
 
-    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_PRE = 2917;
-    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_POST = 1720;
+    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_PRE = 2917; // started with 2917
+    public static int ARM_POSITION_AUTON_SPECIMEN_DELIVERY_POST = 1600;
 
 
     // all the way out 3000
