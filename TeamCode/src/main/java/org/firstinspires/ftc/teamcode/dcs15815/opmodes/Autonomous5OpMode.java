@@ -63,48 +63,58 @@ public abstract class Autonomous5OpMode extends IntoTheDeepAutonomousOpMode {
         deliverSpecimen();
         sleep(1200);
 
-        // Drive away from the submersible
+
         driveWithTimeout(24, 0, 0, 750, 4000);
 
-        // Turn so back faces observation zone
-        driveWithTimeout(0, 0, 90, 750, 2000);
+        driveWithTimeout(0, 0, -90, 750, 2000);
         bot.navigation.resetOtosAndResetOrigin();
+        driveWithTimeout(56, 0, 0, 750, 7500);
 
-        // Backup to the observation zone
-        driveWithTimeout(-56, 0, 0, 750, 5000);
 
-        // Strafe to get flush with walls
-        driveWithTimeout(0, -14, 0, 750, 2300);
+        if (false) {
 
-        // Backup to second specimen and grab it
-        driveWithTimeout(-3, 0, 0, 750, 2000);
-        intakeSpecimen();
-        sleep(1200);
+            // Drive away from the submersible
+            driveWithTimeout(24, 0, 0, 750, 4000);
 
-        // Let's go deliver it
-        prepareForSpecimenDelivery();
+            // Turn so back faces observation zone
+            driveWithTimeout(0, 0, 90, 750, 2000);
+            bot.navigation.resetOtosAndResetOrigin();
+
+            // Backup to the observation zone
+            driveWithTimeout(-56, 0, 0, 750, 5000);
+
+            // Strafe to get flush with walls
+            driveWithTimeout(0, -14, 0, 750, 2300);
+
+            // Backup to second specimen and grab it
+            driveWithTimeout(-3, 0, 0, 750, 2000);
+            intakeSpecimen();
+            sleep(1200);
+
+            // Let's go deliver it
+            prepareForSpecimenDelivery();
 //        driveWithTimeout(0, 6, 0, 750, 2000);
 //        bot.correctForAngle(6);
 //        bot.navigation.resetOtosAndResetOrigin();
-        driveWithTimeout(12, 0, 0, 750, 10000);
-        driveWithTimeout(0, 6, 0, 750, 10000);
-        bot.correctForAngle(6);
-        driveWithTimeout(46, 0, 0, 750, 10000);
-        driveWithTimeout(0, 0, -90, 750, 3000);
-        bot.navigation.resetOtosAndResetOrigin();
-        driveWithTimeout(-21, 0, 0, 750, 4000);
-        deliverSpecimen();
-        sleep(1200);
+            driveWithTimeout(12, 0, 0, 750, 10000);
+            driveWithTimeout(0, 6, 0, 750, 10000);
+            bot.correctForAngle(6);
+            driveWithTimeout(46, 0, 0, 750, 10000);
+            driveWithTimeout(0, 0, -90, 750, 3000);
+            bot.navigation.resetOtosAndResetOrigin();
+            driveWithTimeout(-21, 0, 0, 750, 4000);
+            deliverSpecimen();
+            sleep(1200);
 
 
-        // Goto first sample on floor
+            // Goto first sample on floor
 //        driveWithTimeout(12, -36, 0, 500, 10000);
 //        bot.correctForAngle(6);
 //        driveWithTimeout(-34, 0, 0, 500, 10000);
 //        driveWithTimeout(0, -10, 0, 500, 10000);
 //        bot.correctForAngle(6);
 
-        // Bring first sample to observation zone
+            // Bring first sample to observation zone
 //        driveWithTimeout(46, 0, 0, 500, 10000);
 
 //        // Goto second sample on floor
@@ -116,7 +126,7 @@ public abstract class Autonomous5OpMode extends IntoTheDeepAutonomousOpMode {
 //        driveWithTimeout(46, 0, 0, 500, 10000);
 
 
-        // Give time for human player to retrieve first sample
+            // Give time for human player to retrieve first sample
 //        driveWithTimeout(-11, 0, 0, 500, 10000);
 //        prepareForSpecimenIntake();
 //        sleep(500);
@@ -126,8 +136,6 @@ public abstract class Autonomous5OpMode extends IntoTheDeepAutonomousOpMode {
 //        driveWithTimeout(0, -14, 0, 500, 5000);
 //        intakeSpecimen();
 //        sleep(1200);
-
-
 
 
 //        driveWithTimeout(-46, 0, 0, 500, 10000);
@@ -142,7 +150,7 @@ public abstract class Autonomous5OpMode extends IntoTheDeepAutonomousOpMode {
 
 
 // Specimen 2
-
+        }
 
     }
 

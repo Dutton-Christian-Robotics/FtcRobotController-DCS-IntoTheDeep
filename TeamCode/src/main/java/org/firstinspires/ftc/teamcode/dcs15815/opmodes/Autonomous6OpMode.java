@@ -61,7 +61,7 @@ public abstract class Autonomous6OpMode extends IntoTheDeepAutonomousOpMode {
 
 // Sample 2
 
-        bot.driveToBotRelativePositionWithTimeout(0, 6, 0, 1000, 1500);
+        bot.driveToBotRelativePositionWithTimeout(0, 7, 0, 1000, 1500); //6
 
         bot.correctForAngle(3);
 
@@ -80,13 +80,13 @@ public abstract class Autonomous6OpMode extends IntoTheDeepAutonomousOpMode {
 
         // Back away from neutral samples
 
-        bot.driveToBotRelativePositionWithTimeout(-26.5, -7, 0, 1000, 2500); // was -27.5
+        bot.driveToBotRelativePositionWithTimeout(-26.5, -6, 0, 1000, 2500); // was -27.5 -7
 
         deliverSample(0);
 
 // Sample 3
         bot.navigation.resetOtosAndResetOrigin();
-        bot.driveToBotRelativePositionWithTimeout(0, 14, 0, 1000, 2000);
+        bot.driveToBotRelativePositionWithTimeout(0, 18, 0, 1000, 2000); // 16
 
         bot.correctForAngle(3);
 
@@ -106,17 +106,18 @@ public abstract class Autonomous6OpMode extends IntoTheDeepAutonomousOpMode {
         bot.shoulder.setPosition(NautilusConfiguration.SHOULDER_POSITION_MAX, NautilusConfiguration.SHOULDER_POWER_MAX);
         bot.navigation.resetOtosAndResetOrigin();
 
-        bot.driveToBotRelativePositionWithTimeout(-26, -12, 0, 1000, 2500);
-
         bot.arm.setPosition(NautilusConfiguration.ARM_POSITION_MAX);
+        bot.driveToBotRelativePositionWithTimeout(-23, -10, 0, 1000, 2400); //-26, -12
+
         bot.wrist.gotoUpPosition();
         bot.shoulderOverdrive();
 
         bot.navigation.resetOtosAndResetOrigin();
-        bot.driveToBotRelativePositionWithTimeout(0, 0, 45, 1000, 1200);
+//        bot.driveToBotRelativePositionWithTimeout(0, 0, 40, 1000, 1200);
 
 //        deliverSample(0);
-        bot.intake.expelToTheLeft();
+//        bot.intake.expelToTheLeft();
+        bot.intake.expel();
         sleep(1500);
 
 
